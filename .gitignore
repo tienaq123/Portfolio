@@ -44,4 +44,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# local planning docs (roadmap, phase files, content sources) — never committed
 /docs
+/PORTFOLIO_MASTER_PLAN.md
