@@ -9,7 +9,9 @@ The primary audience is technical recruiters, hiring managers and software engin
 
 ## How work is organized
 
-- The execution plan lives in `docs/phases/` (local only — gitignored). `docs/phases/README.md` holds the status board, the decision log and the per-task prompt template. It overrides `PORTFOLIO_MASTER_PLAN.md` where they conflict.
+- Planning docs are local only (gitignored): `PORTFOLIO_MASTER_PLAN.md` and `docs/`.
+- The execution plan lives in `docs/phases/`. `docs/phases/README.md` holds the status board, the decision log and the per-task prompt template. It overrides `PORTFOLIO_MASTER_PLAN.md` where they conflict.
+- Personal facts (dates, roles, projects, metrics, links) come from `docs/content/cv-facts.md`, transcribed from the owner's CV. Priority: CV > master plan > reference image.
 - Work one phase at a time, one task ID (`M2-T3`…) per branch/PR. Do not pull work forward from later phases.
 - After finishing a task, tick its checkbox in the phase file.
 
