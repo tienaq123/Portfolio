@@ -2,20 +2,21 @@ import { ArrowUp } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { siteName } from "@/lib/site";
+import { getSiteProfile } from "@/lib/content";
 import { getNavLinks } from "./nav-items";
 
 // Bottom bar only. The dark "Let's build…" contact band above it is the
-// homepage Contact section (M2) and shares the same night background.
+// homepage Contact section and shares the same night background.
 export async function SiteFooter() {
   const [t, locale] = await Promise.all([getDictionary(), getLocale()]);
+  const { name, role } = await getSiteProfile(locale);
 
   return (
     <footer className="border-t border-white/10 bg-night text-night-muted">
       <Container className="flex flex-col gap-6 py-8 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="font-semibold text-night-ink">{siteName}</p>
-          <p className="text-sm">{t.footer.role}</p>
+          <p className="font-semibold text-night-ink">{name}</p>
+          <p className="text-sm">{role}</p>
         </div>
 
         <div className="flex items-center justify-between gap-8">

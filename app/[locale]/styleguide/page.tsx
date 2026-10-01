@@ -7,8 +7,8 @@ import { Button, ButtonLink, buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
-import { en } from "@/messages/en";
-import { vi } from "@/messages/vi";
+import { locales } from "@/i18n/config";
+import { siteProfileData } from "@/lib/content/data/site";
 
 // Internal review page for the design system (M1-T6). It 404s in production,
 // so its labels are intentionally not localized; samples show both languages.
@@ -41,20 +41,13 @@ const swatches = [
   { name: "night-muted", className: "bg-night-muted" },
 ];
 
-const samples = [
-  {
-    lang: "en",
-    headline: en.home.headline,
-    body: "3+ years shipping end-to-end products for 15K+ users. I build scalable web applications, robust backend systems and production AI workflows that solve real product problems.",
-    hand: "Good products, better people",
-  },
-  {
-    lang: "vi",
-    headline: vi.home.headline,
-    body: "Hơn 3 năm phát triển sản phẩm end-to-end cho hơn 15.000 người dùng. Tôi xây dựng ứng dụng web dễ mở rộng, hệ thống backend vững chắc và quy trình AI chạy production để giải quyết bài toán sản phẩm thực tế.",
-    hand: "Sản phẩm tốt, con người tốt hơn",
-  },
-];
+// Real copy in both languages, to check diacritics and line lengths.
+const samples = locales.map((lang) => ({
+  lang,
+  headline: siteProfileData.headline[lang],
+  body: siteProfileData.summary[lang],
+  hand: siteProfileData.hero.note[lang].replace("\n", " "),
+}));
 
 function Block({ title, children }: { title: string; children: ReactNode }) {
   return (

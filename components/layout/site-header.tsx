@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
-import { siteName } from "@/lib/site";
+import { getSiteProfile } from "@/lib/content";
 import { HeaderFrame } from "./header-frame";
 import { LanguageSwitcher } from "./language-switcher";
 import { MobileMenu } from "./mobile-menu";
@@ -11,6 +11,7 @@ import { getNavLinks } from "./nav-items";
 
 export async function SiteHeader() {
   const [t, locale] = await Promise.all([getDictionary(), getLocale()]);
+  const { name } = await getSiteProfile(locale);
   const links = getNavLinks(locale, t);
   const cta = { href: `/${locale}#contact`, label: t.nav.cta };
 
@@ -22,7 +23,7 @@ export async function SiteHeader() {
           href={`/${locale}`}
           className="mr-auto text-lg font-bold tracking-tight text-ink"
         >
-          {siteName}
+          {name}
         </Link>
 
         <nav aria-label={t.nav.primary} className="hidden lg:block">

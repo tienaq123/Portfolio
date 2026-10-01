@@ -1,4 +1,4 @@
-// UI strings only. Portfolio content (projects, experience…) lives in lib/content (M2).
+// UI strings only. Portfolio content (projects, experience…) lives in lib/content.
 export const en = {
   metadata: {
     title: "Bùi Hữu Tiến — Full-stack Engineer",
@@ -7,6 +7,7 @@ export const en = {
   },
   a11y: {
     skipToContent: "Skip to content",
+    opensInNewTab: "(opens in a new tab)",
   },
   nav: {
     primary: "Main navigation",
@@ -22,14 +23,44 @@ export const en = {
     label: "Language",
   },
   footer: {
-    role: "Full-stack Engineer",
     nav: "Footer navigation",
     backToTop: "Back to top",
   },
   home: {
-    headline:
-      "Full-stack Engineer building production SaaS, EdTech & AI systems.",
-    status: "The portfolio is under construction.",
+    viewProjects: "View Projects",
+    downloadCv: "Download CV",
+    metricsLabel: "Highlights",
+    work: {
+      title: "Selected Work",
+      description:
+        "A few products I've built and contributed to, from EdTech platforms to AI-powered tools.",
+      readCaseStudy: "Read case study",
+    },
+    strengths: {
+      title: "Engineering Strengths",
+      description:
+        "End-to-end skills for turning ideas into real, scalable products.",
+    },
+    stack: {
+      title: "Tech Stack",
+      description: "Technologies I use to build modern web applications.",
+    },
+    experience: {
+      title: "Experience",
+      description: "My professional journey so far.",
+      present: "Present",
+      work: "Work",
+      education: "Education",
+    },
+    contact: {
+      title: "Let's build something great",
+      description:
+        "I'm always open to discussing new opportunities, interesting projects or just having a chat about technology.",
+      email: "Email Me",
+      github: "GitHub",
+      linkedin: "LinkedIn",
+      cv: "Download CV",
+    },
   },
   notFound: {
     title: "Page not found",
