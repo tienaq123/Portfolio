@@ -68,7 +68,7 @@ CI runs lint, typecheck, format check, build and the Playwright suite on every p
 
 | Variable | Where | Purpose |
 |---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Vercel Production | Canonical origin for metadata, sitemap and JSON-LD. Previews fall back to `VERCEL_URL`. |
+| `NEXT_PUBLIC_SITE_URL` | optional | Canonical origin for metadata, sitemap and JSON-LD. Without it, Vercel production uses the project's production domain and previews their deployment URL. |
 | `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Vercel Production | Enables Umami. Empty = no analytics. |
 | `NEXT_PUBLIC_UMAMI_SCRIPT_URL` | optional | Defaults to Umami Cloud. |
 
