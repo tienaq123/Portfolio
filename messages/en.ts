@@ -34,6 +34,7 @@ export const en = {
       title: "Selected Work",
       description:
         "A few products I've built and contributed to, from EdTech platforms to AI-powered tools.",
+      viewAll: "View all projects",
       readCaseStudy: "Read case study",
     },
     strengths: {
@@ -60,6 +61,43 @@ export const en = {
       github: "GitHub",
       linkedin: "LinkedIn",
       cv: "Download CV",
+    },
+  },
+  work: {
+    title: "Work",
+    description:
+      "Products I've built and contributed to, and the engineering behind them.",
+  },
+  caseStudy: {
+    allProjects: "All projects",
+    role: "Role",
+    team: "Team",
+    timeline: "Timeline",
+    status: "Status",
+    solo: "Solo",
+    people: "people",
+    keyMetrics: "Key metrics",
+    techStack: "Tech stack",
+    onThisPage: "On this page",
+    nextProject: "Next case study",
+    diagramHint: "Scroll sideways to see the whole diagram",
+    statuses: {
+      production: "In production",
+      internal: "Internal tool",
+      archived: "Retired",
+    },
+    sections: {
+      context: "Context",
+      problem: "Problem",
+      responsibility: "My Responsibility",
+      constraints: "Constraints",
+      architecture: "Architecture",
+      decisions: "Key Technical Decisions",
+      tradeoffs: "Trade-offs",
+      implementation: "Implementation Highlights",
+      results: "Result / Impact",
+      learnings: "What I Learned",
+      gallery: "Gallery",
     },
   },
   notFound: {

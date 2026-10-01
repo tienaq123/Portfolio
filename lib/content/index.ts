@@ -17,6 +17,7 @@ import {
   type LocalizedText,
   type MediaRef,
   type Metric,
+  type Project,
   type Strength,
 } from "./schema";
 
@@ -175,3 +176,43 @@ export async function getFeaturedProjects(locale: Locale) {
     .filter((project) => project.featured)
     .map((project) => localizeProject(project, locale));
 }
+
+const caseStudies = () =>
+  publishedProjects().filter((project) => project.sections.length > 0);
+
+export async function getCaseStudySlugs() {
+  return caseStudies().map((project) => project.slug);
+}
+
+/** Full case study for /work/[slug]; null when the slug has no published case study. */
+export async function getCaseStudy(slug: string, locale: Locale) {
+  const list = caseStudies();
+  const index = list.findIndex((project) => project.slug === slug);
+  const project = list[index];
+  if (!project) return null;
+
+  // Wraps around so the last case study points back to the first.
+  const next = list.length > 1 ? list[(index + 1) % list.length] : undefined;
+
+  return {
+    ...localizeProject(project, locale),
+    // The schema guarantees an impact statement whenever sections exist.
+    impactStatement: tr(project.impactStatement ?? project.summary, locale),
+    keyMetrics: project.keyMetrics.map((metric) => ({
+      value: metric.value,
+      label: tr(metric.label, locale),
+    })),
+    sections: [...project.sections].sort(bySortOrder).map((section) => ({
+      type: section.type,
+      title: section.title && tr(section.title, locale),
+      body: tr(section.body, locale),
+      media: section.media.map((media) => localizeMedia(media, locale)),
+    })),
+    next: next && { slug: next.slug, title: next.title },
+  };
+}
+
+export type CaseStudyView = NonNullable<
+  Awaited<ReturnType<typeof getCaseStudy>>
+>;
+export type ProjectStatus = NonNullable<Project["status"]>;

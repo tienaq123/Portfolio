@@ -111,26 +111,43 @@ export const projectSectionSchema = z.object({
 
 export const badgeTones = ["neutral", "accent", "success", "violet"] as const;
 
-export const projectSchema = z.object({
-  id: z.string().min(1),
-  slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  experienceId: z.string().nullable(),
-  title: z.string().min(1),
-  tags: z.array(z.object({ label: localizedText, tone: z.enum(badgeTones) })),
-  summary: localizedText,
-  highlights: z.array(localizedText).min(1),
-  techStack: z.array(z.string().min(1)).min(1),
-  role: localizedText,
-  teamSize: z.string().min(1),
-  timeline: localizedText,
-  status: z.enum(["production", "internal", "archived"]).nullable(),
-  thumbnail: mediaRef.nullable(),
-  featured: z.boolean(),
-  published: z.boolean(),
-  sortOrder: z.number().int(),
-  /** Case study (M3). Empty = no case study page yet. */
-  sections: z.array(projectSectionSchema),
-});
+export const projectStatuses = ["production", "internal", "archived"] as const;
+
+export const projectSchema = z
+  .object({
+    id: z.string().min(1),
+    slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    experienceId: z.string().nullable(),
+    title: z.string().min(1),
+    tags: z.array(z.object({ label: localizedText, tone: z.enum(badgeTones) })),
+    summary: localizedText,
+    highlights: z.array(localizedText).min(1),
+    techStack: z.array(z.string().min(1)).min(1),
+    role: localizedText,
+    teamSize: z.string().min(1),
+    timeline: localizedText,
+    status: z.enum(projectStatuses).nullable(),
+    thumbnail: mediaRef.nullable(),
+    featured: z.boolean(),
+    published: z.boolean(),
+    sortOrder: z.number().int(),
+    /** One-sentence lead of the case study page. */
+    impactStatement: localizedText.nullable(),
+    /** Headline numbers of the case study; values are locale-neutral ("12.4K+"). */
+    keyMetrics: z.array(
+      z.object({ value: z.string().min(1), label: localizedText }),
+    ),
+    /** Case study body. Empty = no case study page yet. */
+    sections: z.array(projectSectionSchema),
+  })
+  .refine(
+    (project) =>
+      project.sections.length === 0 || project.impactStatement !== null,
+    {
+      message: "A project with a case study needs an impactStatement",
+      path: ["impactStatement"],
+    },
+  );
 
 export type LocalizedText = z.infer<typeof localizedText>;
 export type MediaRef = z.infer<typeof mediaRef>;
@@ -141,4 +158,6 @@ export type SkillCategory = z.infer<typeof skillCategorySchema>;
 export type Skill = z.infer<typeof skillSchema>;
 export type Experience = z.infer<typeof experienceSchema>;
 export type Project = z.infer<typeof projectSchema>;
+export type ProjectSection = z.infer<typeof projectSectionSchema>;
+export type SectionType = (typeof sectionTypes)[number];
 export type BadgeTone = (typeof badgeTones)[number];

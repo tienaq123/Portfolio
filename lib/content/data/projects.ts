@@ -1,4 +1,5 @@
 import type { Project } from "../schema";
+import { caseStudySections } from "./case-studies";
 
 // Facts: docs/content/*-facts.md (CV + owner's answers). Only work the owner
 // confirmed as theirs is claimed. Case study sections are added in M3.
@@ -47,7 +48,32 @@ export const projectsData: Project[] = [
     featured: true,
     published: true,
     sortOrder: 1,
-    sections: [],
+    impactStatement: {
+      en: "Researched, designed and built end to end the diagnostics, practice and retention layer of a Digital SAT prep platform with 12,400+ learners: a Readiness Engine that predicts scores, a multistage adaptive placement test and a sales retention CRM.",
+      vi: "Tự nghiên cứu và xây dựng end-to-end lớp chẩn đoán – luyện tập – giữ chân người dùng cho nền tảng luyện thi Digital SAT với 12.400+ học viên: Readiness Engine dự đoán điểm, Placement Test multistage adaptive và Sale Retention CRM.",
+    },
+    keyMetrics: [
+      {
+        value: "12.4K+",
+        label: { en: "Registered users", vi: "Người dùng đăng ký" },
+      },
+      {
+        value: "~110K",
+        label: { en: "Questions in the bank", vi: "Câu hỏi trong ngân hàng" },
+      },
+      {
+        value: "6",
+        label: {
+          en: "Features owned end to end",
+          vi: "Tính năng phụ trách end-to-end",
+        },
+      },
+      {
+        value: "30",
+        label: { en: "REST APIs in the CRM", vi: "REST API trong CRM" },
+      },
+    ],
+    sections: caseStudySections["prep4u"] ?? [],
   },
   {
     id: "edly",
@@ -100,7 +126,28 @@ export const projectsData: Project[] = [
     featured: true,
     published: true,
     sortOrder: 2,
-    sections: [],
+    impactStatement: {
+      en: "Proposed and built solo the dictation practice and the pre-exam warm-up, and designed module-based assignments and AI question analysis, on an LMS with 3,200+ users and a 61,000-question bank.",
+      vi: "Tự đề xuất và phát triển trọn vẹn tính năng Nghe chép chính tả và Warm-up mini-game, thiết kế luồng giao bài theo module và AI phân tích câu hỏi trên nền tảng LMS với 3.200+ người dùng và 61.000+ câu hỏi.",
+    },
+    keyMetrics: [
+      {
+        value: "3.2K+",
+        label: { en: "Registered users", vi: "Người dùng đăng ký" },
+      },
+      {
+        value: "61K+",
+        label: { en: "Questions in the bank", vi: "Câu hỏi trong ngân hàng" },
+      },
+      {
+        value: "2",
+        label: {
+          en: "Features I proposed and built solo",
+          vi: "Tính năng tự đề xuất, làm độc lập",
+        },
+      },
+    ],
+    sections: caseStudySections["edly"] ?? [],
   },
   {
     id: "ai-slack-check",
@@ -148,12 +195,31 @@ export const projectsData: Project[] = [
     },
     teamSize: "1",
     timeline: { en: "03/2026 – 04/2026", vi: "03/2026 – 04/2026" },
-    status: "internal",
+    status: "archived",
     thumbnail: null,
     featured: true,
     published: true,
     sortOrder: 3,
-    sections: [],
+    impactStatement: {
+      en: "Proposed, built and ran solo a Slack → Vietnamese rules → Claude → PostgreSQL pipeline that replaced HR's manual reading and re-typing of leave, late and remote requests for ~50 employees.",
+      vi: "Một mình đề xuất, xây dựng và vận hành pipeline Slack → rule tiếng Việt → Claude → PostgreSQL, thay việc HR đọc tay và nhập lại tin nhắn xin nghỉ, đi muộn, remote của ~50 nhân sự.",
+    },
+    keyMetrics: [
+      {
+        value: "~50",
+        label: { en: "Employees covered", vi: "Nhân sự được xử lý" },
+      },
+      {
+        value: "18",
+        label: {
+          en: "Automatic runs per workday",
+          vi: "Lượt thu thập tự động mỗi ngày",
+        },
+      },
+      { value: "~30", label: { en: "REST endpoints", vi: "REST endpoint" } },
+      { value: "32", label: { en: "Unit tests", vi: "Unit test" } },
+    ],
+    sections: caseStudySections["ai-slack-check"] ?? [],
   },
   {
     id: "benerio",
@@ -161,42 +227,80 @@ export const projectsData: Project[] = [
     experienceId: "protean",
     title: "Benerio",
     tags: [
-      { label: { en: "SaaS", vi: "SaaS" }, tone: "accent" },
-      { label: { en: "Multi-tenant", vi: "Multi-tenant" }, tone: "violet" },
-      { label: { en: "70+ APIs", vi: "70+ API" }, tone: "success" },
+      {
+        label: { en: "SaaS · Multi-tenant", vi: "SaaS · Multi-tenant" },
+        tone: "accent",
+      },
+      { label: { en: "B2B · Japan", vi: "B2B · Nhật Bản" }, tone: "violet" },
+      { label: { en: "59 PRs merged", vi: "59 PR đã merge" }, tone: "success" },
     ],
     summary: {
-      en: "Multi-tenant SaaS for managing Google Business Profile and social media, with 70+ API endpoints.",
-      vi: "Nền tảng SaaS multi-tenant quản lý Google Business Profile và mạng xã hội, với hơn 70 API endpoint.",
+      en: "Multi-tenant B2B SaaS that lets Japanese multi-location businesses manage Google Business Profile and Instagram / Facebook / Threads in one place. I built core GBP features, the partner agency tool and plan-bound access.",
+      vi: "SaaS B2B multi-tenant giúp doanh nghiệp nhiều chi nhánh tại Nhật quản lý Google Business Profile và Instagram / Facebook / Threads ở một nơi. Tôi xây dựng các tính năng GBP cốt lõi, công cụ cho agency đối tác và cơ chế gói dịch vụ.",
     },
     highlights: [
       {
-        en: "Role-based access (Admin / Worker / Viewer) with Supabase RLS",
-        vi: "Phân quyền Admin / Worker / Viewer bằng Supabase RLS",
+        en: "GBP module: business info, review replies, scheduled posts, analytics with PDF export",
+        vi: "Module GBP: thông tin doanh nghiệp, trả lời review, lên lịch bài, phân tích và xuất PDF",
       },
       {
-        en: "OAuth, Google Business Profile & Instagram Graph APIs",
-        vi: "OAuth, Google Business Profile API & Instagram Graph API",
+        en: "Partner agency tool: client management, drafts, schedules, failed-post handling",
+        vi: "Công cụ cho agency: quản lý khách hàng, nháp, lên lịch, xử lý bài đăng lỗi",
       },
       {
-        en: "Multi-provider AI module (OpenAI, Anthropic, Google)",
-        vi: "Module AI đa nhà cung cấp (OpenAI, Anthropic, Google)",
+        en: "Plans and usage: accounts bound to plans, per-location permissions with RLS",
+        vi: "Gói và mức dùng: tài khoản gắn theo gói, phân quyền theo chi nhánh bằng RLS",
       },
       {
-        en: "Scheduled posts & analytics sync, tested with Jest and Playwright",
-        vi: "Scheduled posts & đồng bộ analytics, test bằng Jest và Playwright",
+        en: "Google OAuth linking and idempotent post sync (upsert + cleanup)",
+        vi: "Liên kết Google OAuth và đồng bộ bài đăng idempotent (upsert + dọn bài đã xoá)",
       },
     ],
-    techStack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
+    techStack: [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Tailwind CSS",
+      "Vercel",
+    ],
     role: { en: "Full-stack", vi: "Full-stack" },
-    teamSize: "2–3",
-    timeline: { en: "2025", vi: "2025" },
+    teamSize: "~15",
+    timeline: { en: "06/2025 – 12/2025", vi: "06/2025 – 12/2025" },
     status: null,
     thumbnail: null,
     featured: true,
     published: true,
     sortOrder: 4,
-    sections: [],
+    impactStatement: {
+      en: "Full-stack developer on a multi-tenant B2B SaaS for Japanese multi-location businesses: built core Google Business Profile features, the partner agency tool, and plan-bound account linking with per-location permissions, across 600+ commits and 59 merged pull requests.",
+      vi: "Full-stack developer trên nền tảng SaaS B2B multi-tenant cho doanh nghiệp nhiều chi nhánh tại Nhật: xây dựng các tính năng Google Business Profile cốt lõi, công cụ cho agency đối tác và cơ chế gắn tài khoản theo gói kèm phân quyền theo chi nhánh, qua 600+ commit và 59 pull request.",
+    },
+    keyMetrics: [
+      {
+        value: "600+",
+        label: { en: "Commits (459 code)", vi: "Commit (459 commit code)" },
+      },
+      {
+        value: "59",
+        label: { en: "Pull requests merged", vi: "Pull request đã merge" },
+      },
+      {
+        value: "~60",
+        label: {
+          en: "Client feedback tickets",
+          vi: "Ticket phản hồi từ khách hàng",
+        },
+      },
+      {
+        value: "144",
+        label: {
+          en: "RLS policies in the platform",
+          vi: "RLS policy của nền tảng",
+        },
+      },
+    ],
+    sections: caseStudySections["benerio"] ?? [],
   },
   {
     id: "snacktime-afp",
@@ -245,6 +349,8 @@ export const projectsData: Project[] = [
     featured: true,
     published: true,
     sortOrder: 5,
+    impactStatement: null,
+    keyMetrics: [],
     sections: [],
   },
 ];
