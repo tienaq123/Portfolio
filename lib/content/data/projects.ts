@@ -113,8 +113,8 @@ export const projectsData: Project[] = [
       { label: { en: "Internal tool", vi: "Công cụ nội bộ" }, tone: "neutral" },
     ],
     summary: {
-      en: "LLM-powered attendance automation that turns Vietnamese Slack messages into structured HR data for ~50 employees.",
-      vi: "Tự động hoá chấm công bằng LLM: chuyển tin nhắn Slack tiếng Việt thành dữ liệu HR có cấu trúc cho ~50 nhân sự.",
+      en: "Self-initiated, solo-built internal tool: an LLM pipeline that turns free-form Vietnamese Slack messages into structured attendance data for HR, covering ~50 employees.",
+      vi: "Công cụ nội bộ tự đề xuất và làm một mình: pipeline LLM chuyển tin nhắn Slack tiếng Việt tự do thành dữ liệu chấm công có cấu trúc cho HR, phục vụ ~50 nhân sự.",
     },
     highlights: [
       {
@@ -134,7 +134,14 @@ export const projectsData: Project[] = [
         vi: "Incremental Slack sync & HR Dashboard",
       },
     ],
-    techStack: ["Node.js", "Fastify", "TypeScript", "Claude API", "PostgreSQL"],
+    techStack: [
+      "Node.js",
+      "Fastify",
+      "TypeScript",
+      "Claude API",
+      "PostgreSQL",
+      "React",
+    ],
     role: {
       en: "Full-stack · built solo",
       vi: "Full-stack · phát triển độc lập",
