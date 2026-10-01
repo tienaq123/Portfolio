@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 430" width="960" height="430" role="img" aria-labelledby="t">
+<title id="t">Benerio: platform architecture, with the parts I built highlighted</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8A90A6"/></marker></defs>
+<rect x="0.5" y="0.5" width="959" height="429" rx="16" fill="#F8F9FC" stroke="#E4E7F0"/>
+<text x="30" y="40" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#646A80">PLATFORM · HIGHLIGHTED = PARTS I BUILT</text>
+<text x="30" y="300" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#646A80">DATA &amp; INTEGRATIONS</text>
+<path d="M210.0 99.0 L270.0 99.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M480.0 99.0 L540.0 99.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M576.0 136.0 L576.0 163.0 L375.0 163.0 L375.0 190.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M630.0 136.0 L630.0 190.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M684.0 136.0 L684.0 163.0 L855.0 163.0 L855.0 190.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M210.0 227.0 L270.0 227.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M375.0 264.0 L375.0 322.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M480.0 245.5 L510.0 245.5 L510.0 342.0 L540.0 342.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M630.0 264.0 L630.0 322.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M855.0 264.0 L855.0 322.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M210.0 362.0 L270.0 362.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="30" y="62" width="180" height="74" rx="12" fill="#F2F4F9" stroke="#C9CFDD" stroke-width="1"/>
+<text x="120.0" y="95.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Owners, staff, agencies</text>
+<text x="120.0" y="114.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">Japanese UI</text>
+<rect x="270" y="62" width="210" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="375.0" y="95.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Next.js 14 on Vercel</text>
+<text x="375.0" y="114.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">route handlers, middleware</text>
+<rect x="540" y="62" width="180" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="630.0" y="95.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Service loader</text>
+<text x="630.0" y="114.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">modules per company</text>
+<rect x="30" y="190" width="180" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="120.0" y="223.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Vercel Cron</text>
+<text x="120.0" y="242.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">scheduled posts, sync</text>
+<rect x="270" y="190" width="210" height="74" rx="12" fill="#EBF0FF" stroke="#2E5BF0" stroke-width="1.5"/>
+<text x="375.0" y="214.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#1F3FB8">GBP Manager</text>
+<text x="375.0" y="233.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">info, reviews, posts</text>
+<text x="375.0" y="249.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">analytics, PDF reports</text>
+<rect x="540" y="190" width="180" height="74" rx="12" fill="#EBF0FF" stroke="#2E5BF0" stroke-width="1.5"/>
+<text x="630.0" y="223.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#1F3FB8">Agency tool</text>
+<text x="630.0" y="242.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">drafts, schedules, media</text>
+<rect x="780" y="190" width="150" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="855.0" y="223.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">SNS Manager</text>
+<text x="855.0" y="242.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">IG / FB / Threads</text>
+<rect x="30" y="322" width="180" height="80" rx="12" fill="#EBF0FF" stroke="#2E5BF0" stroke-width="1.5"/>
+<text x="120.0" y="349.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#1F3FB8">Plans &amp; access</text>
+<text x="120.0" y="368.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">accounts per plan</text>
+<text x="120.0" y="384.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">per-location RLS</text>
+<rect x="270" y="322" width="210" height="80" rx="12" fill="#F2F4F9" stroke="#C9CFDD" stroke-width="1"/>
+<text x="375.0" y="349.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Supabase Postgres</text>
+<text x="375.0" y="368.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">71 tables, 144 RLS policies</text>
+<text x="375.0" y="384.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">Auth, Storage</text>
+<rect x="540" y="322" width="180" height="80" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="630.0" y="349.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Google API</text>
+<text x="630.0" y="368.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">Business Profile, OAuth</text>
+<text x="630.0" y="384.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">post &amp; review sync</text>
+<rect x="780" y="322" width="150" height="80" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="855.0" y="358.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Meta &amp; LLM APIs</text>
+<text x="855.0" y="377.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">social + AI providers</text>
+</svg>

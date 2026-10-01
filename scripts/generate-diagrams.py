@@ -193,3 +193,40 @@ render(
         ("fail", "l", "dash", "b", "failures shown to HR", True, [(115, 362)]),
     ],
 )
+
+# ---------------------------------------------------------------- Benerio
+# Highlighted (accent) blocks are the parts the owner built; the rest is the
+# platform the team built.
+render(
+    "benerio",
+    "Benerio: platform architecture, with the parts I built highlighted",
+    960,
+    430,
+    [("PLATFORM · HIGHLIGHTED = PARTS I BUILT", 40), ("DATA & INTEGRATIONS", 300)],
+    [
+        ("users", 30, 62, 180, 74, "Owners, staff, agencies", ["Japanese UI"], "store"),
+        ("app", 270, 62, 210, 74, "Next.js 14 on Vercel", ["route handlers, middleware"], "default"),
+        ("loader", 540, 62, 180, 74, "Service loader", ["modules per company"], "default"),
+        ("cron", 30, 190, 180, 74, "Vercel Cron", ["scheduled posts, sync"], "default"),
+        ("gbp", 270, 190, 210, 74, "GBP Manager", ["info, reviews, posts", "analytics, PDF reports"], "accent"),
+        ("agency", 540, 190, 180, 74, "Agency tool", ["drafts, schedules, media"], "accent"),
+        ("sns", 780, 190, 150, 74, "SNS Manager", ["IG / FB / Threads"], "default"),
+        ("plans", 30, 322, 180, 80, "Plans & access", ["accounts per plan", "per-location RLS"], "accent"),
+        ("db", 270, 322, 210, 80, "Supabase Postgres", ["71 tables, 144 RLS policies", "Auth, Storage"], "store"),
+        ("google", 540, 322, 180, 80, "Google API", ["Business Profile, OAuth", "post & review sync"], "default"),
+        ("ext", 780, 322, 150, 80, "Meta & LLM APIs", ["social + AI providers"], "default"),
+    ],
+    [
+        ("users", "r", "app", "l", "", False, []),
+        ("app", "r", "loader", "l", "", False, []),
+        ("loader", "b@0.2", "gbp", "t", "", False, [(576, 163), (375, 163)]),
+        ("loader", "b", "agency", "t", "", False, []),
+        ("loader", "b@0.8", "sns", "t", "", False, [(684, 163), (855, 163)]),
+        ("cron", "r", "gbp", "l", "", False, []),
+        ("gbp", "b", "db", "t", "", False, []),
+        ("gbp", "r@0.75", "google", "l@0.25", "", False, [(510, 245.5), (510, 342)]),
+        ("agency", "b", "google", "t", "", False, []),
+        ("sns", "b", "ext", "t", "", False, []),
+        ("plans", "r", "db", "l", "", False, []),
+    ],
+)

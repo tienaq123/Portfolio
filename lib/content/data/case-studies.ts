@@ -829,4 +829,252 @@ AI Slack Check là internal tool tôi tự đề xuất tại Protean Studios đ
       sortOrder: 10,
     },
   ],
+  benerio: [
+    {
+      type: "context",
+      title: null,
+      body: {
+        en: `Benerio is a multi-tenant B2B SaaS for the Japanese market that lets businesses with many locations manage their **Google Business Profile** listings and **Instagram / Facebook / Threads** accounts from one dashboard, with AI built in. Services run on the platform as separate modules: GBP Manager, SNS Manager, a tool that lets partner agencies manage many clients, and a few industry-specific modules.
+
+It is built with Next.js 14 (App Router), TypeScript and Supabase, deployed on Vercel, with a Japanese interface and business content in Japanese, English and Chinese. It is a large codebase developed by about fifteen people since late 2024. I worked on Benerio at Protean Studios from June to December 2025.`,
+        vi: `Benerio là nền tảng SaaS B2B multi-tenant cho thị trường Nhật Bản, giúp doanh nghiệp có nhiều chi nhánh quản lý hồ sơ **Google Business Profile** và tài khoản **Instagram / Facebook / Threads** từ một bảng điều khiển, có tích hợp AI. Các dịch vụ chạy trên nền tảng như những module riêng: GBP Manager, SNS Manager, công cụ cho agency đối tác quản lý hộ nhiều khách hàng, và một số module theo ngành.
+
+Hệ thống dùng Next.js 14 (App Router) + TypeScript + Supabase, triển khai trên Vercel, giao diện tiếng Nhật và nội dung doanh nghiệp Nhật / Anh / Trung. Đây là một codebase lớn do khoảng 15 người cùng phát triển từ cuối 2024. Tôi làm việc trên Benerio tại Protean Studios từ tháng 6 đến tháng 12/2025.`,
+      },
+      media: [],
+      sortOrder: 1,
+    },
+    {
+      type: "problem",
+      title: null,
+      body: {
+        en: `- Multi-location businesses had to post, reply to reviews, update details and track metrics **on every Google profile and every social account separately**.
+- Agencies managing many clients needed to do the same **across all their clients**, but only on the locations assigned to them.
+- The platform had to isolate each company's data, enforce permissions per company and per location, and charge by plan and usage.`,
+        vi: `- Doanh nghiệp nhiều chi nhánh phải đăng bài, trả lời đánh giá, cập nhật thông tin và theo dõi số liệu **trên từng hồ sơ Google và từng tài khoản mạng xã hội riêng lẻ**.
+- Agency quản lý hộ nhiều khách hàng cần làm cùng những việc đó cho **tất cả khách hàng** của mình, nhưng chỉ trên những chi nhánh được giao.
+- Nền tảng phải cách ly dữ liệu của từng công ty, phân quyền theo công ty và theo chi nhánh, và tính phí theo gói dịch vụ và mức sử dụng.`,
+      },
+      media: [],
+      sortOrder: 2,
+    },
+    {
+      type: "responsibility",
+      title: null,
+      body: {
+        en: `I worked full stack across every layer: PostgreSQL migrations and Row Level Security, server-side API routes and React interfaces. Four main areas:
+
+- **GBP Manager:** business information editing, review management, scheduled posts, analytics and PDF reports, AI translation, sync jobs.
+- **Partner agency tool:** client management, GBP posts with drafts and scheduling, failed-post handling, media management.
+- **Plans and usage:** Google accounts bound to plans, per-location permissions, RLS for agency-supported locations.
+- **Google sync:** the OAuth flow for linking and unlinking GBP, plus syncing posts and reviews.
+
+In 2025: 619 commits (459 code commits), 59 merged pull requests and about 60 feedback tickets from Japanese clients — through feature branches, pull requests and code review, communicating in English and Japanese.`,
+        vi: `Tôi làm Full-stack trên toàn bộ tầng: migration và Row Level Security trong PostgreSQL, API route phía server và giao diện React. Bốn mảng chính:
+
+- **GBP Manager:** chỉnh sửa thông tin doanh nghiệp, quản lý review, bài đăng có lên lịch, phân tích và báo cáo PDF, dịch bằng AI, cron đồng bộ.
+- **Công cụ cho agency đối tác:** quản lý khách hàng, đăng bài GBP có nháp và lên lịch, xử lý bài lỗi, quản lý media.
+- **Gói dịch vụ và mức sử dụng:** tài khoản Google gắn theo gói, phân quyền theo từng chi nhánh, RLS cho chi nhánh được agency hỗ trợ.
+- **Đồng bộ với Google:** luồng OAuth liên kết / gỡ liên kết GBP, đồng bộ bài đăng và review.
+
+Trong năm 2025: 619 commit (459 commit code), 59 pull request đã merge và khoảng 60 ticket phản hồi từ khách hàng Nhật — làm theo quy trình feature branch, pull request và code review, giao tiếp bằng tiếng Anh và tiếng Nhật.`,
+      },
+      media: [],
+      sortOrder: 3,
+    },
+    {
+      type: "constraints",
+      title: null,
+      body: {
+        en: `- **A large shared codebase** (~185,000 lines of TypeScript): every change had to follow the existing module architecture and migration process.
+- **Isolation had to hold even if app code was wrong:** one company must never see another company's data.
+- **Agencies act on behalf of clients:** access has to cross tenants, but only for the locations they support.
+- **External APIs:** Google OAuth tokens expire, APIs have quotas and rate limits, and data on Google can be edited or deleted outside the system.
+- **Japanese clients** reported issues as numbered tickets; three environments (local, staging, production), with a manual confirmation step for production deploys.`,
+        vi: `- **Codebase lớn, nhiều người cùng sửa** (~185.000 dòng TypeScript): mọi thay đổi phải theo kiến trúc module và quy trình migration có sẵn.
+- **Cách ly dữ liệu phải đúng ngay cả khi code phía app sai:** một công ty không bao giờ được thấy dữ liệu của công ty khác.
+- **Agency làm việc thay khách hàng:** quyền phải đi xuyên tenant nhưng chỉ trong phạm vi chi nhánh được hỗ trợ.
+- **API bên ngoài:** token OAuth của Google hết hạn, có quota và rate limit; dữ liệu trên Google có thể bị sửa hoặc xoá ngoài hệ thống.
+- **Khách hàng Nhật** gửi phản hồi theo ticket đánh số; ba môi trường local / staging / production, production cần xác nhận tay khi deploy.`,
+      },
+      media: [],
+      sortOrder: 4,
+    },
+    {
+      type: "architecture",
+      title: null,
+      body: {
+        en: `- **Next.js 14 on Vercel is the only middle layer:** users and cron jobs both pass through it before touching Supabase or the Google, Meta and LLM provider APIs.
+- **Services are plugins** (built by the platform team): each module declares its routes in a \`manifest.json\`, and one catch-all route loads a module only when that service is enabled for the company.
+- **Data is hierarchical — Company → Location → User;** one user can belong to several companies with different permission groups. Integration settings live in a service catalogue and a table of services enabled per company.
+- **Protection lives in the database:** 71 tables, 144 RLS policies and 73 PostgreSQL functions isolate data by company and permission group.
+- **Background work:** 10 Vercel cron jobs — scheduled posts every 5 minutes, daily and weekly GBP and social metrics sync.
+
+In the diagram, the highlighted blocks are the parts I built directly; the rest is the platform the team built.`,
+        vi: `- **Next.js 14 trên Vercel là lớp trung gian duy nhất:** người dùng và cron job đều đi qua nó trước khi chạm Supabase hoặc API của Google, Meta và các nhà cung cấp LLM.
+- **Dịch vụ là plugin** (do nền tảng xây): mỗi module khai báo route trong \`manifest.json\`; một catch-all route chỉ nạp module khi dịch vụ đó được bật cho công ty.
+- **Dữ liệu phân cấp Công ty → Chi nhánh → Người dùng;** một người có thể thuộc nhiều công ty với nhóm quyền khác nhau. Cấu hình tích hợp nằm ở danh mục dịch vụ và bảng dịch vụ được bật cho từng công ty.
+- **Bảo vệ ở tầng database:** 71 bảng, 144 RLS policy và 73 hàm PostgreSQL cách ly dữ liệu theo công ty và nhóm quyền.
+- **Tác vụ nền:** 10 Vercel cron job — đăng bài đã lên lịch mỗi 5 phút, đồng bộ số liệu GBP và SNS hằng ngày / hằng tuần.
+
+Trong sơ đồ, các khối được tô màu là phần tôi trực tiếp xây dựng; phần còn lại là nền tảng do cả đội phát triển.`,
+      },
+      media: [
+        {
+          src: "/images/projects/benerio/architecture.svg",
+          alt: {
+            en: `Diagram: owners, staff and agencies use a Next.js 14 app on Vercel whose service loader enables modules per company. Highlighted as built by me: the GBP Manager (business info, reviews, posts, analytics and PDF reports), the agency tool (drafts, schedules, media) and plans with per-location access and RLS. Vercel Cron triggers scheduled posts and sync; data lives in Supabase Postgres with 71 tables and 144 RLS policies; the modules talk to the Google Business Profile API, Meta and LLM providers.`,
+            vi: `Sơ đồ: chủ doanh nghiệp, nhân viên và agency dùng ứng dụng Next.js 14 trên Vercel, service loader bật module theo từng công ty. Phần tôi xây dựng được tô màu: GBP Manager (thông tin doanh nghiệp, review, bài đăng, phân tích và báo cáo PDF), công cụ cho agency (nháp, lên lịch, media) và gói dịch vụ kèm phân quyền theo chi nhánh và RLS. Vercel Cron chạy đăng bài theo lịch và đồng bộ; dữ liệu nằm trong Supabase Postgres với 71 bảng và 144 RLS policy; các module gọi Google Business Profile API, Meta và nhà cung cấp LLM.`,
+          },
+          width: 960,
+          height: 430,
+        },
+      ],
+      sortOrder: 5,
+    },
+    {
+      type: "decisions",
+      title: null,
+      body: {
+        en: `### Plans and usage live in the data model
+
+- **Problem:** linked Google and social accounts must count against the active plan, and features should only open for locations on a suitable plan.
+- **Decision:** an \`integrated_service_usage\` model that binds each linked account to the active plan; flows to link and unlink GBP accounts per plan; a per-location plan check before a feature runs; an RPC function that disconnects a service in a single call; a page that tracks AI usage.
+- **Why:** plan limits are enforced in data, not by whether the UI hides a button.
+- **Trade-off:** more checks whenever a feature opens, and unlinking has to clean up consistently.
+
+### Two permission layers: the UI for experience, the database for security
+
+- **Decision:** access granted per location for each user; a frontend permission hook that shows or hides sidebar items and actions; **RLS** in PostgreSQL as the real barrier.
+- **Why:** UI checks keep users from seeing actions they cannot take; RLS makes sure an app-level bug still cannot leak data.
+- **Trade-off:** both layers have to encode the same rules.
+
+### RLS for agency-supported locations
+
+- **Problem:** agencies need to work on their clients' locations — which means crossing tenants.
+- **Decision:** RLS policies that grant access only to supported locations, together with an agency client-management page and an access-transfer flow.
+- **Why:** the agency model keeps the isolation guarantee at the database level.
+
+### Syncing posts with Google: upsert and clean up deletions
+
+- **Problem:** posts can be created, edited or deleted directly on Google, outside the system.
+- **Decision:** a sync job that **upserts** posts from Google and **deletes local posts that no longer exist on Google**, tied to the client's plan.
+- **Why:** reruns never create duplicates, and no "ghost" posts linger in the system.
+
+### A clear post lifecycle for agencies
+
+- **Decision:** GBP posts move through draft → scheduled → published / CANCELLED / failed, with failed-post handling, media stored in Supabase Storage, and CRUD for keywords, hashtags and post templates.
+- **Why:** agencies prepare content ahead for many clients and need to see at once which posts did not go out.
+
+### Fit the existing architecture
+
+- **Decision:** move the GBP APIs into the service module, following the plugin architecture; route every database change through migrations and regenerate the TypeScript types from the schema.
+- **Why:** in a codebase many people change, new features must not break core routing or let DB and code types drift apart.`,
+        vi: `### Gói dịch vụ và mức sử dụng nằm trong mô hình dữ liệu
+
+- **Vấn đề:** tài khoản Google / mạng xã hội mà khách liên kết phải được tính theo gói đang dùng, và tính năng chỉ mở khi chi nhánh có gói phù hợp.
+- **Lựa chọn:** mô hình \`integrated_service_usage\` gắn từng tài khoản đã liên kết vào gói đang dùng; luồng gắn / gỡ tài khoản GBP theo gói; kiểm tra gói theo chi nhánh trước khi dùng tính năng; hàm RPC để ngắt kết nối dịch vụ gọn trong một lần gọi; trang theo dõi mức dùng AI.
+- **Lý do:** giới hạn của gói được áp ở dữ liệu, không phụ thuộc giao diện có ẩn nút hay không.
+- **Trade-off:** nhiều bước kiểm tra hơn mỗi khi mở tính năng, và việc gỡ liên kết phải dọn dữ liệu nhất quán.
+
+### Hai lớp phân quyền: giao diện cho trải nghiệm, database cho bảo mật
+
+- **Lựa chọn:** quyền truy cập theo từng chi nhánh cho mỗi người dùng; một hook kiểm tra quyền phía frontend để ẩn / hiện sidebar và thao tác; còn **RLS** trong PostgreSQL là lớp chặn thật.
+- **Lý do:** kiểm tra phía giao diện giúp người dùng không thấy thao tác họ không được làm; RLS đảm bảo lỗi ở tầng app cũng không làm lộ dữ liệu.
+- **Trade-off:** hai lớp phải giữ cùng một quy tắc.
+
+### RLS cho chi nhánh được agency hỗ trợ
+
+- **Vấn đề:** agency cần thao tác trên chi nhánh của khách hàng — tức là đi xuyên tenant.
+- **Lựa chọn:** RLS policy chỉ cấp quyền trên những chi nhánh được hỗ trợ, kèm trang quản lý khách hàng của agency và luồng chuyển quyền truy cập.
+- **Lý do:** mô hình agency vẫn giữ được nguyên tắc cách ly ở tầng database.
+
+### Đồng bộ bài đăng với Google: upsert và dọn bài đã bị xoá
+
+- **Vấn đề:** bài đăng có thể được tạo, sửa hoặc xoá trực tiếp trên Google, ngoài hệ thống.
+- **Lựa chọn:** cron đồng bộ **upsert** bài đăng từ Google và **xoá bài không còn tồn tại trên Google**; gắn cron với gói dịch vụ.
+- **Lý do:** chạy lại bao nhiêu lần cũng không tạo bản trùng, và không còn "bài ma" trong hệ thống.
+
+### Vòng đời bài đăng rõ ràng cho agency
+
+- **Lựa chọn:** bài GBP có các trạng thái nháp → lên lịch → đã đăng / CANCELLED / lỗi, có xử lý bài đăng lỗi, media lưu trên Supabase Storage, cùng CRUD từ khoá, hashtag và mẫu bài đăng.
+- **Lý do:** agency chuẩn bị nội dung trước cho nhiều khách hàng và cần thấy ngay bài nào chưa đăng được.
+
+### Đi theo kiến trúc sẵn có
+
+- **Lựa chọn:** refactor các API GBP vào module dịch vụ theo kiến trúc plugin; mọi thay đổi database đi qua migration và sinh lại TypeScript types từ schema.
+- **Lý do:** trong codebase nhiều người cùng làm, thêm tính năng không được làm hỏng routing lõi hay lệch kiểu dữ liệu giữa DB và code.`,
+      },
+      media: [],
+      sortOrder: 6,
+    },
+    {
+      type: "tradeoffs",
+      title: null,
+      body: {
+        en: `- **Two permission layers** (UI + RLS): good experience and safety, at the cost of rules living in two places.
+- **Cron-based sync** instead of webhooks: simple and easy to rerun, at the cost of data lagging until the next run.
+- **Plan limits enforced in data:** more reliable, at the cost of an extra check on every action.
+- **A large team codebase:** following the existing architecture and review process is slower than working alone, in return for a consistent system.`,
+        vi: `- **Hai lớp phân quyền** (giao diện + RLS): trải nghiệm tốt và an toàn, đổi lại quy tắc bị lặp ở hai nơi.
+- **Đồng bộ bằng cron** thay vì webhook: đơn giản và dễ chạy lại, đổi lại dữ liệu có độ trễ tới lần chạy kế tiếp.
+- **Giới hạn gói áp ở dữ liệu:** chắc chắn hơn, đổi lại thêm kiểm tra cho mỗi thao tác.
+- **Codebase lớn của cả đội:** đi theo kiến trúc và quy trình review có sẵn chậm hơn làm riêng, đổi lại hệ thống nhất quán.`,
+      },
+      media: [],
+      sortOrder: 7,
+    },
+    {
+      type: "implementation",
+      title: null,
+      body: {
+        en: `- **GBP business information:** sub-categories, address, service area and opening hours; review management with listing, filtering, replies, reply deletion and review sync.
+- **GBP posts:** a post screen with image upload and cancelling or deleting scheduled posts; AI translation of content.
+- **Analytics and reports:** top search keywords, review counts, star rating and map pin; report settings and PDF export (logo, keyword table).
+- **Shared platform pieces:** a company and location picker, file uploads to Supabase Storage, the integrated-service detail screen, and shared support modules for the agency tools.
+- **Google integration:** the GBP OAuth flow, account linking and unlinking, and logging of Google API errors.
+- **Database:** my own migrations (new columns, dropped unique constraints, RLS, RPC functions) and regenerated TypeScript types.
+- **Working with clients:** about 60 feedback tickets from Japanese clients; changes revised through code review.`,
+        vi: `- **Thông tin doanh nghiệp trên GBP:** danh mục phụ, địa chỉ, khu vực phục vụ, giờ mở cửa; quản lý review gồm danh sách, lọc, trả lời, xoá câu trả lời và đồng bộ review.
+- **Bài đăng GBP:** màn hình bài đăng có upload ảnh, huỷ / xoá bài đã lên lịch; dịch nội dung bằng AI.
+- **Phân tích và báo cáo:** từ khoá tìm kiếm hàng đầu, số review, điểm sao, ghim bản đồ; cài đặt và xuất báo cáo PDF (logo, bảng từ khoá).
+- **Nền tảng dùng chung:** bộ chọn công ty / chi nhánh, upload file lên Supabase Storage, màn hình chi tiết dịch vụ tích hợp, module hỗ trợ dùng chung cho các công cụ agency.
+- **Tích hợp Google:** luồng OAuth GBP, liên kết / gỡ liên kết tài khoản, ghi log lỗi Google API.
+- **Database:** tự viết migration (thêm cột, bỏ unique constraint, RLS, hàm RPC) và sinh lại TypeScript types.
+- **Làm việc với khách hàng:** khoảng 60 ticket phản hồi từ khách hàng Nhật; sửa theo góp ý code review.`,
+      },
+      media: [],
+      sortOrder: 8,
+    },
+    {
+      type: "results",
+      title: null,
+      body: {
+        en: `- Delivered four feature areas in 2025: GBP Manager, the partner agency tool, plans with per-location permissions, and Google sync.
+- 619 commits (459 code commits), about +116,000 / −45,000 lines, 413 new files and 59 merged pull requests.
+- Resolved about 60 feedback tickets directly from Japanese clients.`,
+        vi: `- Bàn giao bốn mảng tính năng trong năm 2025: GBP Manager, công cụ cho agency, gói dịch vụ và phân quyền theo chi nhánh, đồng bộ với Google.
+- 619 commit (459 commit code), khoảng +116.000 / −45.000 dòng, 413 file mới và 59 pull request đã merge.
+- Xử lý khoảng 60 phản hồi trực tiếp từ khách hàng Nhật Bản.`,
+      },
+      media: [],
+      sortOrder: 9,
+    },
+    {
+      type: "learnings",
+      title: null,
+      body: {
+        en: `- Isolation between customers belongs in the database; app-level checks only serve the experience.
+- Plans, usage metering and feature toggles are data-model problems before they are UI problems.
+- Syncing with external APIs needs upserts, cleanup of deleted data, and handling of expiring tokens and rate limits.
+- In a large team, following the architecture and process (modules, migrations, review) matters more than a clever solution of my own.`,
+        vi: `- Cách ly dữ liệu giữa các khách hàng phải nằm ở database; kiểm tra phía app chỉ để phục vụ trải nghiệm.
+- Gói dịch vụ, đo mức dùng và bật / tắt tính năng là bài toán mô hình dữ liệu trước khi là bài toán giao diện.
+- Đồng bộ với API bên ngoài cần upsert, dọn dữ liệu đã bị xoá, và xử lý token hết hạn cùng giới hạn gọi API.
+- Trong đội lớn, đi đúng kiến trúc và quy trình (module, migration, review) quan trọng hơn một giải pháp riêng thông minh.`,
+      },
+      media: [],
+      sortOrder: 10,
+    },
+  ],
 };

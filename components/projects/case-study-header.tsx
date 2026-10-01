@@ -6,6 +6,7 @@ import { Container } from "@/components/ui/container";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import type { CaseStudyView } from "@/lib/content";
+import { cn } from "@/lib/utils";
 import { ProjectVisual } from "./project-visual";
 
 export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
@@ -22,11 +23,15 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
           : `${study.teamSize} ${labels.people}`,
     },
     { label: labels.timeline, value: study.timeline },
-    {
-      label: labels.status,
-      value: study.status ? labels.statuses[study.status] : "—",
-    },
+    // Unknown status is left out rather than shown as a dash.
+    ...(study.status
+      ? [{ label: labels.status, value: labels.statuses[study.status] }]
+      : []),
   ];
+
+  // Three items read better as one row of three than as a 2 + 1 grid.
+  const columns = (count: number) =>
+    count === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4";
 
   return (
     <header className="relative isolate overflow-hidden">
@@ -52,7 +57,12 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
           {study.impactStatement}
         </p>
 
-        <dl className="mt-10 grid gap-px overflow-hidden rounded-card border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+        <dl
+          className={cn(
+            "mt-10 grid gap-px overflow-hidden rounded-card border border-border bg-border",
+            columns(facts.length),
+          )}
+        >
           {facts.map((fact) => (
             <div key={fact.label} className="bg-surface px-5 py-4">
               <dt className="text-xs font-semibold tracking-wide text-muted uppercase">
@@ -65,7 +75,7 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
 
         {study.keyMetrics.length > 0 && (
           <section aria-label={labels.keyMetrics} className="mt-6">
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <ul className={cn("grid gap-4", columns(study.keyMetrics.length))}>
               {study.keyMetrics.map((metric) => (
                 <li key={metric.label}>
                   <Card className="h-full p-5">
