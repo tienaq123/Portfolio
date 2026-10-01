@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { SiteHeader } from "@/components/layout/site-header";
 import { locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { siteUrl } from "@/lib/env";
-import { inter } from "../fonts";
+import { fontVariables } from "../fonts";
 import "../globals.css";
 
 export function generateStaticParams() {
@@ -18,15 +20,24 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+// Every page renders its own <main id="main"> for the skip link.
 export default async function LocaleLayout({
   children,
 }: LayoutProps<"/[locale]">) {
-  const locale = await getLocale();
+  const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
 
   return (
-    <html lang={locale} className={`${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col bg-white text-neutral-900">
+    <html lang={locale} className={`${fontVariables} h-full`}>
+      <body className="flex min-h-full flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-control focus:bg-surface focus:px-4 focus:py-3 focus:font-semibold focus:text-ink focus:shadow-raised"
+        >
+          {t.a11y.skipToContent}
+        </a>
+        <SiteHeader />
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

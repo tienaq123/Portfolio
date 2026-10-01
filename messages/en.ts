@@ -5,13 +5,31 @@ export const en = {
     description:
       "Full-stack Engineer building production SaaS, EdTech & AI systems.",
   },
+  a11y: {
+    skipToContent: "Skip to content",
+  },
+  nav: {
+    primary: "Main navigation",
+    work: "Work",
+    about: "About",
+    skills: "Skills",
+    contact: "Contact",
+    cta: "Let's Talk",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+  },
+  languageSwitcher: {
+    label: "Language",
+  },
+  footer: {
+    role: "Full-stack Engineer",
+    nav: "Footer navigation",
+    backToTop: "Back to top",
+  },
   home: {
     headline:
       "Full-stack Engineer building production SaaS, EdTech & AI systems.",
     status: "The portfolio is under construction.",
-  },
-  languageSwitcher: {
-    label: "Language",
   },
   notFound: {
     title: "Page not found",

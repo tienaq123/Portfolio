@@ -7,13 +7,31 @@ export const vi: Messages = {
     description:
       "Full-stack Engineer xây dựng hệ thống SaaS, EdTech và AI chạy production.",
   },
+  a11y: {
+    skipToContent: "Chuyển đến nội dung",
+  },
+  nav: {
+    primary: "Điều hướng chính",
+    work: "Dự án",
+    about: "Giới thiệu",
+    skills: "Kỹ năng",
+    contact: "Liên hệ",
+    cta: "Trao đổi ngay",
+    openMenu: "Mở menu",
+    closeMenu: "Đóng menu",
+  },
+  languageSwitcher: {
+    label: "Ngôn ngữ",
+  },
+  footer: {
+    role: "Full-stack Engineer",
+    nav: "Điều hướng chân trang",
+    backToTop: "Lên đầu trang",
+  },
   home: {
     headline:
       "Full-stack Engineer xây dựng hệ thống SaaS, EdTech và AI chạy production.",
     status: "Portfolio đang được xây dựng.",
-  },
-  languageSwitcher: {
-    label: "Ngôn ngữ",
   },
   notFound: {
     title: "Không tìm thấy trang",
