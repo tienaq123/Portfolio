@@ -1,4 +1,6 @@
-import { ProjectCard } from "@/components/projects/project-card";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ProjectGrid } from "@/components/projects/project-grid";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
@@ -22,27 +24,19 @@ export async function SelectedWork({
           id="work-title"
           title={t.home.work.title}
           description={t.home.work.description}
-        />
-        {/* First project spans the row; the rest form a 2-column grid. */}
-        <ul className="mt-10 grid gap-6 lg:grid-cols-2">
-          {projects.map((project, index) => (
-            <li
-              key={project.slug}
-              className={index === 0 ? "lg:col-span-2" : undefined}
+          action={
+            <Link
+              href={`/${locale}/work`}
+              className="inline-flex min-h-11 items-center gap-2 font-semibold text-accent transition-colors hover:text-accent-hover"
             >
-              <ProjectCard
-                project={project}
-                wide={index === 0}
-                href={
-                  project.hasCaseStudy
-                    ? `/${locale}/work/${project.slug}`
-                    : undefined
-                }
-                readCaseStudyLabel={t.home.work.readCaseStudy}
-              />
-            </li>
-          ))}
-        </ul>
+              {t.home.work.viewAll}
+              <ArrowRight aria-hidden="true" className="size-4" />
+            </Link>
+          }
+        />
+        <div className="mt-10">
+          <ProjectGrid projects={projects} />
+        </div>
       </Container>
     </section>
   );

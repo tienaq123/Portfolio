@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" width="960" height="560" role="img" aria-labelledby="t">
+<title id="t">Prep4u: diagnostics and retention architecture</title>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#8A90A6"/></marker></defs>
+<rect x="0.5" y="0.5" width="959" height="559" rx="16" fill="#F8F9FC" stroke="#E4E7F0"/>
+<text x="30" y="40" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#646A80">DIAGNOSE → PRACTISE</text>
+<text x="30" y="318" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#646A80">RETAIN</text>
+<path d="M210.0 99.0 L270.0 99.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M480.0 99.0 L540.0 99.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M720.0 99.0 L780.0 99.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M210.0 121.2 L240.0 121.2 L240.0 208.5 L270.0 208.5" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M270.0 241.8 L210.0 241.8" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M120.0 190.0 L120.0 136.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M630.0 190.0 L630.0 136.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M210.0 377.0 L270.0 377.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M480.0 377.0 L540.0 377.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M720.0 377.0 L780.0 377.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M120.0 414.0 L120.0 462.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M855.0 414.0 L855.0 499.0 L720.0 499.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<path d="M540.0 499.0 L480.0 499.0" fill="none" stroke="#8A90A6" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="30" y="62" width="180" height="74" rx="12" fill="#F2F4F9" stroke="#C9CFDD" stroke-width="1"/>
+<text x="120.0" y="95.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Learner attempts</text>
+<text x="120.0" y="114.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">web + mobile app</text>
+<rect x="270" y="62" width="210" height="74" rx="12" fill="#EBF0FF" stroke="#2E5BF0" stroke-width="1.5"/>
+<text x="375.0" y="86.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#1F3FB8">Readiness Engine</text>
+<text x="375.0" y="105.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">Wilson + Bayesian</text>
+<text x="375.0" y="121.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">anti-gaming formula</text>
+<rect x="540" y="62" width="180" height="74" rx="12" fill="#F2F4F9" stroke="#C9CFDD" stroke-width="1"/>
+<text x="630.0" y="86.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Readiness cache</text>
+<text x="630.0" y="105.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">Redis 60 min</text>
+<text x="630.0" y="121.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">event invalidation</text>
+<rect x="780" y="62" width="150" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="855.0" y="95.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Dashboard</text>
+<text x="855.0" y="114.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">web + mobile API</text>
+<rect x="30" y="190" width="180" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="120.0" y="223.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Filtered practice</text>
+<text x="120.0" y="242.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">test library by skill</text>
+<rect x="270" y="190" width="210" height="74" rx="12" fill="#EBF0FF" stroke="#2E5BF0" stroke-width="1.5"/>
+<text x="375.0" y="214.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#1F3FB8">Weakness Map</text>
+<text x="375.0" y="233.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">skill tree</text>
+<text x="375.0" y="249.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">mastery ceiling</text>
+<rect x="540" y="190" width="180" height="74" rx="12" fill="#EBF0FF" stroke="#2E5BF0" stroke-width="1.5"/>
+<text x="630.0" y="214.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#1F3FB8">Placement Test</text>
+<text x="630.0" y="233.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">multistage adaptive</text>
+<text x="630.0" y="249.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">row-locked submits</text>
+<rect x="30" y="340" width="180" height="74" rx="12" fill="#F2F4F9" stroke="#C9CFDD" stroke-width="1"/>
+<text x="120.0" y="373.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Activity &amp; plans</text>
+<text x="120.0" y="392.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">logins, tests, subs</text>
+<rect x="270" y="340" width="210" height="74" rx="12" fill="#EBF0FF" stroke="#2E5BF0" stroke-width="1.5"/>
+<text x="375.0" y="373.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#1F3FB8">5 segment rules</text>
+<text x="375.0" y="392.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#3F4559">+ business-value priority</text>
+<rect x="540" y="340" width="180" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="630.0" y="373.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Sales priority queue</text>
+<text x="630.0" y="392.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">30 REST APIs, playbook</text>
+<rect x="780" y="340" width="150" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="855.0" y="373.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Outreach</text>
+<text x="855.0" y="392.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">Zalo deep link</text>
+<rect x="30" y="462" width="180" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="120.0" y="495.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Retention dashboard</text>
+<text x="120.0" y="514.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">D1/D7/D30 cohorts</text>
+<rect x="270" y="462" width="210" height="74" rx="12" fill="#FFFFFF" stroke="#D3D8E4" stroke-width="1"/>
+<text x="375.0" y="495.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Reactivation metrics</text>
+<text x="375.0" y="514.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">action after contact</text>
+<rect x="540" y="462" width="180" height="74" rx="12" fill="#F2F4F9" stroke="#C9CFDD" stroke-width="1"/>
+<text x="630.0" y="495.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="14.5" font-weight="700" fill="#0E1225">Contacted-user logins</text>
+<text x="630.0" y="514.0" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="12" fill="#646A80">middleware, once / session</text>
+<rect x="194.3" y="154.8" width="91.3" height="18" rx="9" fill="#F8F9FC"/>
+<text x="240.0" y="168.3" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#646A80">last 20 tests</text>
+<rect x="605.7" y="153.0" width="48.6" height="18" rx="9" fill="#F8F9FC"/>
+<text x="630.0" y="166.5" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="11" fill="#646A80">upsert</text>
+</svg>

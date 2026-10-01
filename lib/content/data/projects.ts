@@ -1,4 +1,5 @@
 import type { Project } from "../schema";
+import { caseStudySections } from "./case-studies";
 
 // Facts: docs/content/*-facts.md (CV + owner's answers). Only work the owner
 // confirmed as theirs is claimed. Case study sections are added in M3.
@@ -47,7 +48,32 @@ export const projectsData: Project[] = [
     featured: true,
     published: true,
     sortOrder: 1,
-    sections: [],
+    impactStatement: {
+      en: "Researched, designed and built end to end the diagnostics, practice and retention layer of a Digital SAT prep platform with 12,400+ learners: a Readiness Engine that predicts scores, a multistage adaptive placement test and a sales retention CRM.",
+      vi: "Tự nghiên cứu và xây dựng end-to-end lớp chẩn đoán – luyện tập – giữ chân người dùng cho nền tảng luyện thi Digital SAT với 12.400+ học viên: Readiness Engine dự đoán điểm, Placement Test multistage adaptive và Sale Retention CRM.",
+    },
+    keyMetrics: [
+      {
+        value: "12.4K+",
+        label: { en: "Registered users", vi: "Người dùng đăng ký" },
+      },
+      {
+        value: "~110K",
+        label: { en: "Questions in the bank", vi: "Câu hỏi trong ngân hàng" },
+      },
+      {
+        value: "6",
+        label: {
+          en: "Features owned end to end",
+          vi: "Tính năng phụ trách end-to-end",
+        },
+      },
+      {
+        value: "30",
+        label: { en: "REST APIs in the CRM", vi: "REST API trong CRM" },
+      },
+    ],
+    sections: caseStudySections["prep4u"] ?? [],
   },
   {
     id: "edly",
@@ -100,7 +126,28 @@ export const projectsData: Project[] = [
     featured: true,
     published: true,
     sortOrder: 2,
-    sections: [],
+    impactStatement: {
+      en: "Proposed and built solo the dictation practice and the pre-exam warm-up, and designed module-based assignments and AI question analysis, on an LMS with 3,200+ users and a 61,000-question bank.",
+      vi: "Tự đề xuất và phát triển trọn vẹn tính năng Nghe chép chính tả và Warm-up mini-game, thiết kế luồng giao bài theo module và AI phân tích câu hỏi trên nền tảng LMS với 3.200+ người dùng và 61.000+ câu hỏi.",
+    },
+    keyMetrics: [
+      {
+        value: "3.2K+",
+        label: { en: "Registered users", vi: "Người dùng đăng ký" },
+      },
+      {
+        value: "61K+",
+        label: { en: "Questions in the bank", vi: "Câu hỏi trong ngân hàng" },
+      },
+      {
+        value: "2",
+        label: {
+          en: "Features I proposed and built solo",
+          vi: "Tính năng tự đề xuất, làm độc lập",
+        },
+      },
+    ],
+    sections: caseStudySections["edly"] ?? [],
   },
   {
     id: "ai-slack-check",
@@ -148,12 +195,31 @@ export const projectsData: Project[] = [
     },
     teamSize: "1",
     timeline: { en: "03/2026 – 04/2026", vi: "03/2026 – 04/2026" },
-    status: "internal",
+    status: "archived",
     thumbnail: null,
     featured: true,
     published: true,
     sortOrder: 3,
-    sections: [],
+    impactStatement: {
+      en: "Proposed, built and ran solo a Slack → Vietnamese rules → Claude → PostgreSQL pipeline that replaced HR's manual reading and re-typing of leave, late and remote requests for ~50 employees.",
+      vi: "Một mình đề xuất, xây dựng và vận hành pipeline Slack → rule tiếng Việt → Claude → PostgreSQL, thay việc HR đọc tay và nhập lại tin nhắn xin nghỉ, đi muộn, remote của ~50 nhân sự.",
+    },
+    keyMetrics: [
+      {
+        value: "~50",
+        label: { en: "Employees covered", vi: "Nhân sự được xử lý" },
+      },
+      {
+        value: "18",
+        label: {
+          en: "Automatic runs per workday",
+          vi: "Lượt thu thập tự động mỗi ngày",
+        },
+      },
+      { value: "~30", label: { en: "REST endpoints", vi: "REST endpoint" } },
+      { value: "32", label: { en: "Unit tests", vi: "Unit test" } },
+    ],
+    sections: caseStudySections["ai-slack-check"] ?? [],
   },
   {
     id: "benerio",
@@ -196,6 +262,8 @@ export const projectsData: Project[] = [
     featured: true,
     published: true,
     sortOrder: 4,
+    impactStatement: null,
+    keyMetrics: [],
     sections: [],
   },
   {
@@ -245,6 +313,8 @@ export const projectsData: Project[] = [
     featured: true,
     published: true,
     sortOrder: 5,
+    impactStatement: null,
+    keyMetrics: [],
     sections: [],
   },
 ];

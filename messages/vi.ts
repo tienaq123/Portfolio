@@ -36,6 +36,7 @@ export const vi: Messages = {
       title: "Dự án tiêu biểu",
       description:
         "Một số sản phẩm tôi đã xây dựng và đóng góp, từ nền tảng EdTech đến công cụ ứng dụng AI.",
+      viewAll: "Xem tất cả dự án",
       readCaseStudy: "Đọc case study",
     },
     strengths: {
@@ -62,6 +63,43 @@ export const vi: Messages = {
       github: "GitHub",
       linkedin: "LinkedIn",
       cv: "Tải CV",
+    },
+  },
+  work: {
+    title: "Dự án",
+    description:
+      "Các sản phẩm tôi đã xây dựng và đóng góp, cùng phần kỹ thuật phía sau.",
+  },
+  caseStudy: {
+    allProjects: "Tất cả dự án",
+    role: "Vai trò",
+    team: "Team",
+    timeline: "Thời gian",
+    status: "Trạng thái",
+    solo: "Một mình",
+    people: "người",
+    keyMetrics: "Số liệu chính",
+    techStack: "Công nghệ",
+    onThisPage: "Trong trang này",
+    nextProject: "Case study tiếp theo",
+    diagramHint: "Vuốt ngang để xem toàn bộ sơ đồ",
+    statuses: {
+      production: "Đang vận hành",
+      internal: "Công cụ nội bộ",
+      archived: "Đã ngừng vận hành",
+    },
+    sections: {
+      context: "Bối cảnh",
+      problem: "Vấn đề",
+      responsibility: "Vai trò của tôi",
+      constraints: "Ràng buộc",
+      architecture: "Kiến trúc",
+      decisions: "Quyết định kỹ thuật chính",
+      tradeoffs: "Đánh đổi",
+      implementation: "Điểm nổi bật khi triển khai",
+      results: "Kết quả",
+      learnings: "Bài học",
+      gallery: "Hình ảnh",
     },
   },
   notFound: {
