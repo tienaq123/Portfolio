@@ -1,51 +1,105 @@
 import type { Project } from "../schema";
 
-// Facts from the CV. Case study sections are added in M3.
+// Facts: docs/content/*-facts.md (CV + owner's answers). Only work the owner
+// confirmed as theirs is claimed. Case study sections are added in M3.
 export const projectsData: Project[] = [
   {
-    id: "prep4u-edly",
-    slug: "prep4u-edly",
+    id: "prep4u",
+    slug: "prep4u",
     experienceId: "protean",
-    title: "Prep4u & Edly",
+    title: "Prep4u",
     tags: [
-      { label: { en: "EdTech", vi: "EdTech" }, tone: "accent" },
+      { label: { en: "EdTech · SAT", vi: "EdTech · SAT" }, tone: "accent" },
       { label: { en: "Production", vi: "Production" }, tone: "success" },
-      { label: { en: "15K+ users", vi: "15K+ người dùng" }, tone: "violet" },
+      { label: { en: "12K+ users", vi: "12K+ người dùng" }, tone: "violet" },
     ],
     summary: {
-      en: "Two production SAT & IELTS prep platforms: adaptive testing, learning analytics and LMS for 15K+ learners.",
-      vi: "Hai nền tảng luyện thi SAT, IELTS chạy production: adaptive testing, phân tích học tập và LMS cho hơn 15.000 học viên.",
+      en: "Digital SAT prep platform with 12K+ users. I designed and built its diagnostics and retention layer: score prediction, an adaptive placement test and a sales retention CRM.",
+      vi: "Nền tảng luyện thi Digital SAT với hơn 12.000 người dùng. Tôi thiết kế và xây dựng lớp chẩn đoán và giữ chân người dùng: dự đoán điểm, placement test adaptive và CRM giữ chân khách hàng.",
     },
     highlights: [
       {
-        en: "Readiness Engine: Wilson lower bound + Bayesian smoothing",
-        vi: "Readiness Engine: Wilson lower bound + Bayesian smoothing",
+        en: "Readiness Engine: Wilson lower bound + Bayesian smoothing, anti-gaming by design",
+        vi: "Readiness Engine: Wilson lower bound + Bayesian smoothing, chống điểm ảo ngay trong công thức",
       },
       {
-        en: "Adaptive placement test, race-condition safe",
-        vi: "Placement Test adaptive, chống race condition",
+        en: "Multistage adaptive placement test with row-locked submissions",
+        vi: "Placement Test multistage adaptive, nộp bài có row lock chống race condition",
       },
       {
-        en: "Weakness Map & retention dashboard (D1/D7/D30)",
-        vi: "Weakness Map & Retention Dashboard (D1/D7/D30)",
+        en: "Weakness Map that links each weak skill to targeted practice",
+        vi: "Weakness Map dẫn thẳng tới bài luyện đúng kỹ năng yếu",
       },
       {
-        en: "OpenAI-powered transcripts, translations and difficulty tagging",
-        vi: "OpenAI sinh transcript, bản dịch và phân loại độ khó",
+        en: "Self-initiated sales retention CRM with cohort retention dashboard",
+        vi: "Sale Retention CRM tự đề xuất, kèm dashboard retention theo cohort",
       },
     ],
-    techStack: ["Laravel", "Vue 3", "TypeScript", "MySQL", "Redis", "OpenAI"],
+    techStack: ["Laravel", "Livewire", "Alpine.js", "MySQL", "Redis"],
     role: {
       en: "Full-stack · led 2 developers",
       vi: "Full-stack · lead nhóm 2 developer",
     },
     teamSize: "3–6",
-    timeline: { en: "02/2026 – 08/2026", vi: "02/2026 – 08/2026" },
+    timeline: { en: "01/2026 – 08/2026", vi: "01/2026 – 08/2026" },
     status: "production",
     thumbnail: null,
     featured: true,
     published: true,
     sortOrder: 1,
+    sections: [],
+  },
+  {
+    id: "edly",
+    slug: "edly",
+    experienceId: "protean",
+    title: "Edly",
+    tags: [
+      { label: { en: "EdTech · LMS", vi: "EdTech · LMS" }, tone: "accent" },
+      { label: { en: "Production", vi: "Production" }, tone: "success" },
+      { label: { en: "3K+ users", vi: "3K+ người dùng" }, tone: "violet" },
+    ],
+    summary: {
+      en: "IELTS & SAT learning platform with 3K+ users and 61K+ questions. I created its dictation practice and pre-exam warm-up, and built module-based assignments and AI question analysis.",
+      vi: "Nền tảng luyện thi IELTS & SAT với hơn 3.000 người dùng và 61.000+ câu hỏi. Tôi tự đề xuất tính năng nghe chép chính tả và warm-up trước giờ thi, xây dựng giao bài theo module và AI phân tích câu hỏi.",
+    },
+    highlights: [
+      {
+        en: "Dictation practice from IELTS Listening, AI translations checked by QA rules",
+        vi: "Nghe chép chính tả từ đề IELTS Listening, AI dịch có kiểm tra chất lượng bằng rule",
+      },
+      {
+        en: "Pre-exam warm-up: versioned config, idempotent server-side scoring",
+        vi: "Warm-up trước giờ thi: versioning cấu hình, API chấm điểm idempotent",
+      },
+      {
+        en: "Module-based exam sharing and class assignments",
+        vi: "Chia sẻ đề và giao bài cho lớp theo từng module",
+      },
+      {
+        en: "OpenAI question analysis: transcripts, difficulty and category",
+        vi: "AI phân tích câu hỏi: transcript, độ khó và danh mục",
+      },
+    ],
+    techStack: [
+      "Laravel",
+      "Vue 3",
+      "TypeScript",
+      "Inertia.js",
+      "MongoDB",
+      "OpenAI",
+    ],
+    role: {
+      en: "Full-stack · led 2 developers",
+      vi: "Full-stack · lead nhóm 2 developer",
+    },
+    teamSize: "3–5",
+    timeline: { en: "05/2026 – 09/2026", vi: "05/2026 – 09/2026" },
+    status: "production",
+    thumbnail: null,
+    featured: true,
+    published: true,
+    sortOrder: 2,
     sections: [],
   },
   {
@@ -91,7 +145,7 @@ export const projectsData: Project[] = [
     thumbnail: null,
     featured: true,
     published: true,
-    sortOrder: 2,
+    sortOrder: 3,
     sections: [],
   },
   {
@@ -134,7 +188,7 @@ export const projectsData: Project[] = [
     thumbnail: null,
     featured: true,
     published: true,
-    sortOrder: 3,
+    sortOrder: 4,
     sections: [],
   },
   {
@@ -183,7 +237,7 @@ export const projectsData: Project[] = [
     thumbnail: null,
     featured: true,
     published: true,
-    sortOrder: 4,
+    sortOrder: 5,
     sections: [],
   },
 ];

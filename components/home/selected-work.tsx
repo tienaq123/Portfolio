@@ -23,11 +23,16 @@ export async function SelectedWork({
           title={t.home.work.title}
           description={t.home.work.description}
         />
+        {/* First project spans the row; the rest form a 2-column grid. */}
         <ul className="mt-10 grid gap-6 lg:grid-cols-2">
-          {projects.map((project) => (
-            <li key={project.slug}>
+          {projects.map((project, index) => (
+            <li
+              key={project.slug}
+              className={index === 0 ? "lg:col-span-2" : undefined}
+            >
               <ProjectCard
                 project={project}
+                wide={index === 0}
                 href={
                   project.hasCaseStudy
                     ? `/${locale}/work/${project.slug}`

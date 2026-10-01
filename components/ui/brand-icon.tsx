@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
 import {
+  siAlpinedotjs,
   siClaude,
   siCloudflareworkers,
   siDocker,
@@ -41,6 +42,7 @@ const techIcons: Record<string, SimpleIcon> = {
   "Next.js": siNextdotjs,
   "Inertia.js": siInertia,
   Livewire: siLivewire,
+  "Alpine.js": siAlpinedotjs,
   "Tailwind CSS": siTailwindcss,
   PHP: siPhp,
   Laravel: siLaravel,

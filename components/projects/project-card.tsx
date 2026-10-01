@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { TechBadge } from "@/components/ui/tech-badge";
 import type { ProjectSummary } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 /** Stand-in until real screenshots arrive: an abstract app window. */
 function ScreenshotPlaceholder({ title }: { title: string }) {
@@ -47,21 +48,36 @@ type ProjectCardProps = {
   /** Case study URL; omitted while the project has no case study. */
   href?: string;
   readCaseStudyLabel: string;
+  /** Full-row layout on desktop: screenshot left, details right. */
+  wide?: boolean;
 };
 
 export function ProjectCard({
   project,
   href,
   readCaseStudyLabel,
+  wide = false,
 }: ProjectCardProps) {
   return (
-    <Card className="relative flex h-full flex-col overflow-hidden">
-      <div className="relative aspect-video border-b border-border bg-surface-muted">
+    <Card
+      className={cn(
+        "relative flex h-full flex-col overflow-hidden",
+        wide && "lg:flex-row",
+      )}
+    >
+      <div
+        className={cn(
+          "relative aspect-video border-b border-border bg-surface-muted",
+          wide &&
+            "lg:aspect-auto lg:w-1/2 lg:shrink-0 lg:border-r lg:border-b-0",
+        )}
+      >
         {project.thumbnail ? (
           <Image
             src={project.thumbnail.src}
             alt={project.thumbnail.alt}
             fill
+            // Half of the row when wide, one grid column otherwise: ~36rem either way.
             sizes="(min-width: 1024px) 36rem, 100vw"
             className="object-cover"
           />
@@ -79,7 +95,7 @@ export function ProjectCard({
         </ul>
       </div>
 
-      <div className="flex flex-1 flex-col p-6">
+      <div className={cn("flex flex-1 flex-col p-6", wide && "lg:p-8")}>
         <h3 className="text-xl font-bold tracking-tight">
           {href ? (
             // Stretched link: the whole card is one click target.
