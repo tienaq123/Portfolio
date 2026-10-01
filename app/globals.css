@@ -1,6 +1,120 @@
 @import "tailwindcss";
 
-/* Design tokens are defined in M1-T2. */
+/*
+ * Design tokens. Names describe a role, not a color, so a dark theme
+ * later only swaps values. Preview them all on /[locale]/styleguide.
+ */
+@theme {
+  /* Surfaces */
+  --color-canvas: #f8f9fc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f2f4f9;
+
+  /* Text */
+  --color-ink: #0e1225;
+  --color-body: #3f4559;
+  --color-muted: #646a80;
+
+  /* Lines */
+  --color-border: #e4e7f0;
+  --color-border-strong: #d3d8e4;
+
+  /* Accent (primary actions, links, highlighted headline words) */
+  --color-accent: #2e5bf0;
+  --color-accent-hover: #2349d1;
+  --color-accent-soft: #ebf0ff;
+  --color-accent-ink: #1f3fb8;
+
+  /* Supporting tints for badges and status */
+  --color-success: #16a34a;
+  --color-success-soft: #e7f6ed;
+  --color-success-ink: #166534;
+  --color-violet-soft: #f1ecff;
+  --color-violet-ink: #5b3cc4;
+
+  /* Dark band: contact CTA, footer, code cards */
+  --color-night: #0b1022;
+  --color-night-raised: #151b33;
+  --color-night-ink: #e6e9f5;
+  --color-night-muted: #9aa3c0;
+
+  --color-focus: #2e5bf0;
+
+  --container-page: 75rem;
+
+  --radius-control: 0.625rem;
+  --radius-card: 1rem;
+  --radius-panel: 1.5rem;
+
+  --shadow-card:
+    0 1px 2px rgb(14 18 37 / 0.04), 0 8px 24px rgb(14 18 37 / 0.06);
+  --shadow-raised: 0 12px 32px rgb(14 18 37 / 0.12);
+  --shadow-accent: 0 6px 16px rgb(46 91 240 / 0.28);
+
+  /* Type scale — line heights leave room for stacked Vietnamese diacritics. */
+  --text-display: clamp(2.75rem, 1.9rem + 3.6vw, 4.5rem);
+  --text-display--line-height: 1.1;
+  --text-display--letter-spacing: -0.035em;
+  --text-display--font-weight: 800;
+
+  --text-lead: clamp(1.25rem, 1.1rem + 0.6vw, 1.625rem);
+  --text-lead--line-height: 1.35;
+  --text-lead--font-weight: 600;
+
+  --text-title: clamp(1.75rem, 1.45rem + 1.1vw, 2.25rem);
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.02em;
+  --text-title--font-weight: 700;
+}
+
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-hand: var(--font-sriracha), cursive;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    /* Keep anchored sections clear of the sticky header. */
+    scroll-padding-top: 5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Lock page scroll while a modal dialog (mobile menu) is open. */
+  html:has(dialog[open]) {
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-canvas font-sans text-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply text-ink;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
