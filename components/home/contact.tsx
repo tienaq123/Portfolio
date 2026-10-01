@@ -3,7 +3,8 @@ import type { ReactNode } from "react";
 import { GitHubMark, LinkedInMark } from "@/components/ui/brand-icon";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
-import { getDictionary } from "@/i18n/dictionaries";
+import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { trackAttrs } from "@/lib/analytics/track";
 import type { SiteProfileView } from "@/lib/content";
 
 const iconLinkClass =
@@ -13,11 +14,13 @@ function ExternalIconLink({
   href,
   label,
   newTabHint,
+  tracking,
   children,
 }: {
   href: string;
   label: string;
   newTabHint: string;
+  tracking: ReturnType<typeof trackAttrs>;
   children: ReactNode;
 }) {
   return (
@@ -26,6 +29,7 @@ function ExternalIconLink({
       target="_blank"
       rel="noopener noreferrer"
       className={iconLinkClass}
+      {...tracking}
     >
       {children}
       <span className="sr-only">
@@ -37,7 +41,7 @@ function ExternalIconLink({
 
 // Dark band that runs straight into the footer (same night background).
 export async function Contact({ profile }: { profile: SiteProfileView }) {
-  const t = await getDictionary();
+  const [t, locale] = await Promise.all([getDictionary(), getLocale()]);
   const { contact } = t.home;
 
   return (
@@ -56,6 +60,7 @@ export async function Contact({ profile }: { profile: SiteProfileView }) {
           <a
             href={`mailto:${profile.links.email}`}
             className={buttonVariants({ size: "lg" })}
+            {...trackAttrs("email_clicked", { locale })}
           >
             <Mail aria-hidden="true" />
             {contact.email}
@@ -64,6 +69,7 @@ export async function Contact({ profile }: { profile: SiteProfileView }) {
             href={profile.links.github}
             label={contact.github}
             newTabHint={t.a11y.opensInNewTab}
+            tracking={trackAttrs("github_clicked", { locale })}
           >
             <GitHubMark />
           </ExternalIconLink>
@@ -71,11 +77,19 @@ export async function Contact({ profile }: { profile: SiteProfileView }) {
             href={profile.links.linkedin}
             label={contact.linkedin}
             newTabHint={t.a11y.opensInNewTab}
+            tracking={trackAttrs("linkedin_clicked", { locale })}
           >
             <LinkedInMark />
           </ExternalIconLink>
           {profile.cvHref && (
-            <a href={profile.cvHref} className={iconLinkClass}>
+            <a
+              href={profile.cvHref}
+              className={iconLinkClass}
+              {...trackAttrs("resume_downloaded", {
+                locale,
+                source: "contact",
+              })}
+            >
               <Download aria-hidden="true" />
               <span className="sr-only">{contact.cv}</span>
             </a>

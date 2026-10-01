@@ -3,14 +3,18 @@ import { ProjectGrid } from "@/components/projects/project-grid";
 import { Container } from "@/components/ui/container";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { getProjects, getSiteProfile } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo/metadata";
 
 export async function generateMetadata(): Promise<Metadata> {
   const [t, locale] = await Promise.all([getDictionary(), getLocale()]);
   const { name } = await getSiteProfile(locale);
-  return {
+  return pageMetadata({
+    locale,
+    path: "/work",
     title: `${t.work.title} — ${name}`,
     description: t.work.description,
-  };
+    siteName: name,
+  });
 }
 
 export default async function WorkPage() {
@@ -25,7 +29,7 @@ export default async function WorkPage() {
           <p className="mt-4 text-lg leading-relaxed">{t.work.description}</p>
         </div>
         <div className="mt-10 lg:mt-12">
-          <ProjectGrid projects={projects} />
+          <ProjectGrid projects={projects} headingLevel={2} />
         </div>
       </Container>
     </main>

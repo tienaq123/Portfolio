@@ -3,6 +3,7 @@ import type { SiteProfile } from "../schema";
 // Source of truth for personal facts: the owner's CV (see CLAUDE.md).
 export const siteProfileData: SiteProfile = {
   name: "Bùi Hữu Tiến",
+  alternateName: "Bui Huu Tien",
   role: { en: "Full-stack Engineer", vi: "Full-stack Engineer" },
   availability: {
     en: "Available for new opportunities",
@@ -26,10 +27,20 @@ export const siteProfileData: SiteProfile = {
     github: "https://github.com/tienaq123",
     linkedin: "https://www.linkedin.com/in/tienbh/",
   },
-  // Real photo pending: drop it at public/images/profile.jpg and fill this in.
-  photo: null,
-  // Web (redacted) CV pending: e.g. "/files/Bui-Huu-Tien-CV-VI.pdf".
-  cv: { en: null, vi: null },
+  photo: {
+    src: "/images/profile/bui-huu-tien.jpg",
+    alt: {
+      en: "Portrait of Bùi Hữu Tiến",
+      vi: "Ảnh chân dung Bùi Hữu Tiến",
+    },
+    width: 1122,
+    height: 1402,
+  },
+  // Web versions of the CV: no phone number, city only (D18).
+  cv: {
+    en: "/files/Bui-Huu-Tien-CV-EN.pdf",
+    vi: "/files/Bui-Huu-Tien-CV-VI.pdf",
+  },
   hero: {
     codeIdeas: [
       { en: "Better products", vi: "Sản phẩm tốt hơn" },

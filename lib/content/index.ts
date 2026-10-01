@@ -56,6 +56,7 @@ export async function getSiteProfile(locale: Locale) {
   const cvFile = await getCvFile(locale);
   return {
     name: profile.name,
+    alternateName: profile.alternateName,
     role: tr(profile.role, locale),
     availability: profile.availability && tr(profile.availability, locale),
     headline: tr(profile.headline, locale),
@@ -156,6 +157,7 @@ function localizeProject(project: (typeof projects)[number], locale: Locale) {
     teamSize: project.teamSize,
     timeline: tr(project.timeline, locale),
     status: project.status,
+    liveUrl: project.liveUrl,
     thumbnail: project.thumbnail && localizeMedia(project.thumbnail, locale),
     /** Only projects with a written case study get a detail page. */
     hasCaseStudy: project.sections.length > 0,

@@ -1,70 +1,7 @@
 import type { ComponentProps } from "react";
-import {
-  siAlpinedotjs,
-  siClaude,
-  siCloudflareworkers,
-  siDocker,
-  siFastify,
-  siFirebase,
-  siGithub,
-  siGithubactions,
-  siGoogle,
-  siHono,
-  siInertia,
-  siJavascript,
-  siLaravel,
-  siLivewire,
-  siMongodb,
-  siMysql,
-  siNextdotjs,
-  siNodedotjs,
-  siPhp,
-  siPostgresql,
-  siRailway,
-  siReact,
-  siRedis,
-  siSupabase,
-  siTailwindcss,
-  siTypescript,
-  siVercel,
-  siVuedotjs,
-  type SimpleIcon,
-} from "simple-icons";
+import { siGithub } from "simple-icons";
+import { techIconPath, techIcons } from "@/lib/tech-icons";
 import { cn } from "@/lib/utils";
-
-// Keyed by the tech names used in lib/content. Brands simple-icons no longer
-// ships (OpenAI, Slack, LinkedIn…) fall back to a monogram.
-const techIcons: Record<string, SimpleIcon> = {
-  TypeScript: siTypescript,
-  JavaScript: siJavascript,
-  "Vue 3": siVuedotjs,
-  React: siReact,
-  "Next.js": siNextdotjs,
-  "Inertia.js": siInertia,
-  Livewire: siLivewire,
-  "Alpine.js": siAlpinedotjs,
-  "Tailwind CSS": siTailwindcss,
-  PHP: siPhp,
-  Laravel: siLaravel,
-  "Node.js": siNodedotjs,
-  Hono: siHono,
-  Fastify: siFastify,
-  MySQL: siMysql,
-  PostgreSQL: siPostgresql,
-  MongoDB: siMongodb,
-  Redis: siRedis,
-  Supabase: siSupabase,
-  "Cloudflare Workers": siCloudflareworkers,
-  "Cloudflare Workers/Queues/R2": siCloudflareworkers,
-  Docker: siDocker,
-  "GitHub Actions": siGithubactions,
-  Vercel: siVercel,
-  Railway: siRailway,
-  "Claude API": siClaude,
-  "Anthropic Claude": siClaude,
-  "Google Business Profile API": siGoogle,
-  "Firebase FCM": siFirebase,
-};
 
 /** Decorative brand logo for a technology; the visible name carries the meaning. */
 export function TechLogo({
@@ -90,15 +27,19 @@ export function TechLogo({
     );
   }
 
+  // A cacheable file (app/icons/tech) instead of inline paths: logos repeat
+  // across the page, and inline SVG is sent twice (HTML + RSC payload).
   return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill={`#${icon.hex}`}
+    // eslint-disable-next-line @next/next/no-img-element -- static SVG; next/image adds nothing here
+    <img
+      src={techIconPath(icon)}
+      alt=""
+      width={24}
+      height={24}
+      loading="lazy"
+      decoding="async"
       className={className}
-    >
-      <path d={icon.path} />
-    </svg>
+    />
   );
 }
 

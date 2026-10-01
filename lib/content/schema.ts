@@ -18,6 +18,8 @@ export const mediaRef = z.object({
 
 export const siteProfileSchema = z.object({
   name: z.string().min(1),
+  /** Name without diacritics, as written on the English CV (JSON-LD alternateName). */
+  alternateName: z.string().min(1),
   role: localizedText,
   availability: localizedText.nullable(),
   headline: localizedText,
@@ -127,6 +129,8 @@ export const projectSchema = z
     teamSize: z.string().min(1),
     timeline: localizedText,
     status: z.enum(projectStatuses).nullable(),
+    /** Public product URL; null for internal or unreleased work. */
+    liveUrl: z.url().nullable(),
     thumbnail: mediaRef.nullable(),
     featured: z.boolean(),
     published: z.boolean(),

@@ -1,5 +1,5 @@
 import { ArrowRight, CircleCheck } from "lucide-react";
-import Link from "next/link";
+import { TrackedLink } from "@/components/analytics/tracked-link";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { TechBadge } from "@/components/ui/tech-badge";
@@ -14,6 +14,8 @@ type ProjectCardProps = {
   readCaseStudyLabel: string;
   /** Full-row layout on desktop: screenshot left, details right. */
   wide?: boolean;
+  /** h3 under a section heading (homepage), h2 directly under the page h1. */
+  headingLevel?: 2 | 3;
 };
 
 export function ProjectCard({
@@ -21,7 +23,9 @@ export function ProjectCard({
   href,
   readCaseStudyLabel,
   wide = false,
+  headingLevel = 3,
 }: ProjectCardProps) {
+  const Heading = headingLevel === 2 ? "h2" : "h3";
   return (
     <Card
       className={cn(
@@ -57,19 +61,21 @@ export function ProjectCard({
       </div>
 
       <div className={cn("flex flex-1 flex-col p-6", wide && "lg:p-8")}>
-        <h3 className="text-xl font-bold tracking-tight">
+        <Heading className="text-xl font-bold tracking-tight">
           {href ? (
             // Stretched link: the whole card is one click target.
-            <Link
+            <TrackedLink
               href={href}
               className="after:absolute after:inset-0 focus-visible:outline-none"
+              event="project_card_clicked"
+              data={{ slug: project.slug }}
             >
               {project.title}
-            </Link>
+            </TrackedLink>
           ) : (
             project.title
           )}
-        </h3>
+        </Heading>
         <p className="mt-2 leading-relaxed">{project.summary}</p>
 
         <ul className="mt-5 space-y-2.5 text-sm">

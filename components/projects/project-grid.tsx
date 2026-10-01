@@ -5,8 +5,10 @@ import { ProjectCard } from "./project-card";
 /** First project spans the row on desktop; the rest form a 2-column grid. */
 export async function ProjectGrid({
   projects,
+  headingLevel,
 }: {
   projects: ProjectSummary[];
+  headingLevel?: 2 | 3;
 }) {
   const [t, locale] = await Promise.all([getDictionary(), getLocale()]);
 
@@ -20,6 +22,7 @@ export async function ProjectGrid({
           <ProjectCard
             project={project}
             wide={index === 0}
+            headingLevel={headingLevel}
             href={
               project.hasCaseStudy
                 ? `/${locale}/work/${project.slug}`

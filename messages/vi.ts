@@ -3,9 +3,9 @@ import type { Messages } from "./en";
 // Typed as Messages: a missing or extra key fails typecheck.
 export const vi: Messages = {
   metadata: {
-    title: "Bùi Hữu Tiến — Full-stack Engineer",
+    title: "Bùi Hữu Tiến — Full-stack Engineer | SaaS, EdTech & AI",
     description:
-      "Full-stack Engineer xây dựng hệ thống SaaS, EdTech và AI chạy production.",
+      "Full-stack Engineer với hơn 3 năm kinh nghiệm xây dựng hệ thống web SaaS, EdTech và AI chạy production cho hơn 15.000 người dùng.",
   },
   a11y: {
     skipToContent: "Chuyển đến nội dung",
@@ -71,6 +71,8 @@ export const vi: Messages = {
       "Các sản phẩm tôi đã xây dựng và đóng góp, cùng phần kỹ thuật phía sau.",
   },
   caseStudy: {
+    label: "Case study",
+    documentTitle: "Case study {title}",
     allProjects: "Tất cả dự án",
     role: "Vai trò",
     team: "Team",
@@ -82,6 +84,7 @@ export const vi: Messages = {
     techStack: "Công nghệ",
     onThisPage: "Trong trang này",
     nextProject: "Case study tiếp theo",
+    visitSite: "Xem sản phẩm thực tế",
     diagramHint: "Vuốt ngang để xem toàn bộ sơ đồ",
     statuses: {
       production: "Đang vận hành",
@@ -101,6 +104,13 @@ export const vi: Messages = {
       learnings: "Bài học",
       gallery: "Hình ảnh",
     },
+  },
+  error: {
+    title: "Đã có lỗi xảy ra",
+    description: "Trang này chưa tải được. Hãy thử lại hoặc quay về trang chủ.",
+    retry: "Thử lại",
+    backHome: "Về trang chủ",
+    reference: "Mã lỗi",
   },
   notFound: {
     title: "Không tìm thấy trang",
