@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Design tokens are defined in M1-T2. */
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
