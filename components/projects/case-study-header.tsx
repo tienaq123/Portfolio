@@ -1,6 +1,7 @@
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { TechBadge } from "@/components/ui/tech-badge";
@@ -29,9 +30,10 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
       : []),
   ];
 
-  // Three items read better as one row of three than as a 2 + 1 grid.
+  // Three items read better as one row of three than as a 2 + 1 grid;
+  // otherwise pairs, even on phones, to keep the header short.
   const columns = (count: number) =>
-    count === 3 ? "sm:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4";
+    count === 3 ? "sm:grid-cols-3" : "grid-cols-2 lg:grid-cols-4";
 
   return (
     <header className="relative isolate overflow-hidden">
@@ -56,6 +58,18 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
         <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink sm:text-xl">
           {study.impactStatement}
         </p>
+        {study.liveUrl && (
+          <a
+            href={study.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(buttonVariants({ variant: "secondary" }), "mt-6")}
+          >
+            {labels.visitSite}
+            <ArrowUpRight aria-hidden="true" />
+            <span className="sr-only">{` ${t.a11y.opensInNewTab}`}</span>
+          </a>
+        )}
 
         <dl
           className={cn(
@@ -100,12 +114,19 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
           </ul>
         </section>
 
-        <div className="relative mt-10 aspect-video overflow-hidden rounded-panel border border-border bg-surface-muted shadow-card lg:aspect-[21/9]">
+        <div
+          className={cn(
+            "relative mt-10 overflow-hidden rounded-panel border border-border bg-surface-muted shadow-card",
+            // The placeholder has no intrinsic size; a screenshot keeps its own.
+            !study.thumbnail && "aspect-video lg:aspect-[21/9]",
+          )}
+        >
           <ProjectVisual
             title={study.title}
             thumbnail={study.thumbnail}
-            sizes="(min-width: 1200px) 75rem, 100vw"
+            sizes="(min-width: 1200px) 66rem, 100vw"
             priority
+            fit="natural"
           />
         </div>
       </Container>

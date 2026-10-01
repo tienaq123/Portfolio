@@ -7,6 +7,7 @@ import {
   locales,
   type Locale,
 } from "@/i18n/config";
+import { track } from "@/lib/analytics/track";
 import { cn } from "@/lib/utils";
 
 const ONE_YEAR_IN_SECONDS = 60 * 60 * 24 * 365;
@@ -40,7 +41,9 @@ export function LanguageSwitcher({
   function select(event: MouseEvent<HTMLAnchorElement>, code: Locale) {
     event.preventDefault();
     rememberLocale(code);
-    if (code !== locale) window.location.assign(localizedUrl(code));
+    if (code === locale) return;
+    track("language_switched", { from: locale, to: code });
+    window.location.assign(localizedUrl(code));
   }
 
   return (
@@ -63,8 +66,9 @@ export function LanguageSwitcher({
                     : "text-muted hover:text-ink",
                 )}
               >
-                <span aria-hidden="true">{code}</span>
-                <span className="sr-only">{localeNames[code]}</span>
+                {/* Visible code stays in the name (WCAG 2.5.3 label in name). */}
+                {code}
+                <span className="sr-only">{` (${localeNames[code]})`}</span>
               </a>
             </li>
           );

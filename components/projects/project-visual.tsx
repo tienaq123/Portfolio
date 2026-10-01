@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { Media } from "@/lib/content";
+import { cn } from "@/lib/utils";
 
 /** Stand-in until real screenshots arrive: an abstract app window. */
 function ScreenshotPlaceholder({ title }: { title: string }) {
@@ -43,26 +44,65 @@ type ProjectVisualProps = {
   sizes: string;
   /** Above-the-fold image on a case study page. */
   priority?: boolean;
+  /**
+   * `cover` fills a sized parent and crops from the top-left (cards);
+   * `natural` shows the whole screenshot at its own aspect ratio.
+   */
+  fit?: "cover" | "natural";
 };
 
-/** Fills its (relative, sized) parent with the screenshot or a placeholder. */
+/**
+ * The screenshot framed as an app window on a soft backdrop, or a
+ * placeholder. The placeholder (and `cover`) needs a sized parent.
+ */
 export function ProjectVisual({
   title,
   thumbnail,
   sizes,
   priority = false,
+  fit = "cover",
 }: ProjectVisualProps) {
   if (!thumbnail) return <ScreenshotPlaceholder title={title} />;
 
+  const cover = fit === "cover";
+  const imageProps = {
+    src: thumbnail.src,
+    sizes,
+    loading: priority ? "eager" : "lazy",
+    fetchPriority: priority ? "high" : "auto",
+  } as const;
+
   return (
-    <Image
-      src={thumbnail.src}
-      alt={thumbnail.alt}
-      fill
-      sizes={sizes}
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
-      className="object-cover"
-    />
+    <div
+      className={cn(
+        "bg-linear-to-br from-accent-soft via-surface-muted to-violet-soft px-6 pt-12 sm:px-10 sm:pt-14",
+        cover && "h-full",
+      )}
+    >
+      {/* The surface behind the image doubles as the fallback if it fails to load. */}
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-t-xl border border-b-0 border-border bg-surface text-sm text-muted shadow-raised",
+          cover && "h-full",
+        )}
+      >
+        {cover ? (
+          <Image
+            {...imageProps}
+            alt={thumbnail.alt}
+            fill
+            className="object-cover object-left-top"
+          />
+        ) : (
+          <Image
+            {...imageProps}
+            alt={thumbnail.alt}
+            width={thumbnail.width}
+            height={thumbnail.height}
+            className="h-auto w-full"
+          />
+        )}
+      </div>
+    </div>
   );
 }

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { UmamiScript } from "@/components/analytics/umami-script";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { getSiteProfile } from "@/lib/content";
 import { siteUrl } from "@/lib/env";
 import { fontVariables } from "../fonts";
 import "../globals.css";
@@ -11,12 +13,22 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+// Defaults for pages without their own metadata (e.g. not-found). Pages set
+// canonical + hreflang themselves: an inherited canonical would be wrong.
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getDictionary();
+  const [t, profile] = await Promise.all([
+    getDictionary(),
+    getLocale().then(getSiteProfile),
+  ]);
   return {
     metadataBase: new URL(siteUrl),
     title: t.metadata.title,
     description: t.metadata.description,
+    applicationName: profile.name,
+    authors: [{ name: profile.name, url: siteUrl }],
+    creator: profile.name,
+    openGraph: { type: "website", siteName: profile.name },
+    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -38,6 +50,7 @@ export default async function LocaleLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        <UmamiScript />
       </body>
     </html>
   );

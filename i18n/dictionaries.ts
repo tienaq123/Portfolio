@@ -16,5 +16,10 @@ export async function getLocale(): Promise<Locale> {
 }
 
 export async function getDictionary(): Promise<Messages> {
-  return dictionaries[await getLocale()]();
+  return loadDictionary(await getLocale());
+}
+
+/** For code without root params, e.g. `opengraph-image` route handlers. */
+export function loadDictionary(locale: Locale): Promise<Messages> {
+  return dictionaries[locale]();
 }

@@ -14,6 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonLink, buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { trackAttrs } from "@/lib/analytics/track";
 import type { SiteProfileView } from "@/lib/content";
 
 /** Renders `accent` (a substring of `text`) in the accent color. */
@@ -73,7 +74,8 @@ function HeroVisual({ profile }: { profile: SiteProfileView }) {
             loading="eager"
             fetchPriority="high"
             sizes="(min-width: 1024px) 34rem, 90vw"
-            className="object-cover"
+            // Portrait photo in a landscape frame: keep the head in view.
+            className="object-cover object-[50%_18%]"
           />
         ) : (
           // Placeholder until the real photo lands (see lib/content/data/site.ts).
@@ -114,11 +116,12 @@ function HeroVisual({ profile }: { profile: SiteProfileView }) {
           })}
         </ul>
 
-        <p className="absolute right-5 bottom-5 -rotate-3 text-right font-hand text-base leading-snug whitespace-pre-line text-accent-ink sm:text-lg">
+        {/* Notes sit on a light backdrop so they stay legible over the photo. */}
+        <p className="absolute right-4 bottom-4 -rotate-3 rounded-control bg-surface/85 px-3 py-1.5 text-right font-hand text-base leading-snug whitespace-pre-line text-accent-ink shadow-card backdrop-blur sm:text-lg">
           {hero.tagline}
         </p>
 
-        <p className="absolute bottom-10 -left-6 hidden -rotate-6 font-hand text-xl leading-snug whitespace-pre-line text-muted xl:block">
+        <p className="absolute bottom-10 -left-6 hidden -rotate-6 rounded-control bg-surface/85 px-3 py-1.5 font-hand text-xl leading-snug whitespace-pre-line text-muted shadow-card backdrop-blur xl:block">
           {hero.note}
         </p>
       </div>
@@ -162,6 +165,7 @@ export async function Hero({ profile }: { profile: SiteProfileView }) {
               <a
                 href={profile.cvHref}
                 className={buttonVariants({ variant: "secondary", size: "lg" })}
+                {...trackAttrs("resume_downloaded", { locale, source: "hero" })}
               >
                 <Download aria-hidden="true" />
                 {t.home.downloadCv}

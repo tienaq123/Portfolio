@@ -300,10 +300,10 @@ Tôi lead một nhóm 2 developer: chia task, review code và thiết kế giả
       body: {
         en: `Edly (edly.vn) is a Protean Studios EdTech / LMS platform, built partly on the Prep4u codebase: prep for all four IELTS skills, the Digital SAT and university aptitude tests, plus video courses, online classrooms for teachers and mini-games. Its users are students, teachers, parents, sales staff, content editors and admins.
 
-The codebase is large and runs two frontend stacks side by side — **Inertia + Vue 3 with TypeScript** for newer areas and **Livewire** for the CMS and older pages — with content data in **MongoDB** and transactional data in **MySQL**. I worked on it from May to September 2026.`,
+The codebase is large and runs two frontend stacks side by side — **Inertia + Vue 3 with TypeScript** for newer areas and **Livewire** for the CMS and older pages — with content data in **MongoDB** and transactional data in **MySQL**. I worked on it from March to September 2026.`,
         vi: `Edly (edly.vn) là nền tảng EdTech / LMS của Protean Studios, phát triển một phần từ nền tảng Prep4u: luyện thi IELTS 4 kỹ năng, Digital SAT và kỳ thi Đánh giá năng lực, kèm khoá học video, lớp học trực tuyến cho giáo viên và mini-game. Người dùng gồm học sinh, giáo viên, phụ huynh, sale, nhân viên nhập liệu và admin.
 
-Codebase lớn và có hai stack frontend song song: **Inertia + Vue 3 TypeScript** cho các khu vực mới và **Livewire** cho CMS và trang cũ; dữ liệu nội dung nằm trên **MongoDB**, dữ liệu giao dịch trên **MySQL**. Tôi tham gia từ 05/2026 đến 09/2026.`,
+Codebase lớn và có hai stack frontend song song: **Inertia + Vue 3 TypeScript** cho các khu vực mới và **Livewire** cho CMS và trang cũ; dữ liệu nội dung nằm trên **MongoDB**, dữ liệu giao dịch trên **MySQL**. Tôi tham gia từ 03/2026 đến 09/2026.`,
       },
       media: [],
       sortOrder: 1,
@@ -836,10 +836,10 @@ AI Slack Check là internal tool tôi tự đề xuất tại Protean Studios đ
       body: {
         en: `Benerio is a multi-tenant B2B SaaS for the Japanese market that lets businesses with many locations manage their **Google Business Profile** listings and **Instagram / Facebook / Threads** accounts from one dashboard, with AI built in. Services run on the platform as separate modules: GBP Manager, SNS Manager, a tool that lets partner agencies manage many clients, and a few industry-specific modules.
 
-It is built with Next.js 14 (App Router), TypeScript and Supabase, deployed on Vercel, with a Japanese interface and business content in Japanese, English and Chinese. It is a large codebase developed by about fifteen people since late 2024. I worked on Benerio at Protean Studios from June to December 2025.`,
+It is built with Next.js 14 (App Router), TypeScript and Supabase, deployed on Vercel, with a Japanese interface and business content in Japanese, English and Chinese. It is a large codebase that about fifteen people have contributed to since late 2024; while I was on it, around three developers were active at the same time. I worked on Benerio at Protean Studios from June to December 2025.`,
         vi: `Benerio là nền tảng SaaS B2B multi-tenant cho thị trường Nhật Bản, giúp doanh nghiệp có nhiều chi nhánh quản lý hồ sơ **Google Business Profile** và tài khoản **Instagram / Facebook / Threads** từ một bảng điều khiển, có tích hợp AI. Các dịch vụ chạy trên nền tảng như những module riêng: GBP Manager, SNS Manager, công cụ cho agency đối tác quản lý hộ nhiều khách hàng, và một số module theo ngành.
 
-Hệ thống dùng Next.js 14 (App Router) + TypeScript + Supabase, triển khai trên Vercel, giao diện tiếng Nhật và nội dung doanh nghiệp Nhật / Anh / Trung. Đây là một codebase lớn do khoảng 15 người cùng phát triển từ cuối 2024. Tôi làm việc trên Benerio tại Protean Studios từ tháng 6 đến tháng 12/2025.`,
+Hệ thống dùng Next.js 14 (App Router) + TypeScript + Supabase, triển khai trên Vercel, giao diện tiếng Nhật và nội dung doanh nghiệp Nhật / Anh / Trung. Đây là một codebase lớn có khoảng 15 người đóng góp từ cuối 2024; trong giai đoạn tôi tham gia, thường có khoảng 3 developer làm cùng lúc. Tôi làm việc trên Benerio tại Protean Studios từ tháng 6 đến tháng 12/2025.`,
       },
       media: [],
       sortOrder: 1,

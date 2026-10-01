@@ -1,9 +1,9 @@
 // UI strings only. Portfolio content (projects, experience…) lives in lib/content.
 export const en = {
   metadata: {
-    title: "Bùi Hữu Tiến — Full-stack Engineer",
+    title: "Bùi Hữu Tiến — Full-stack Engineer | SaaS, EdTech & AI",
     description:
-      "Full-stack Engineer building production SaaS, EdTech & AI systems.",
+      "Full-stack Engineer with 3+ years of experience building production SaaS, EdTech and AI-powered web systems for 15K+ users.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -69,6 +69,9 @@ export const en = {
       "Products I've built and contributed to, and the engineering behind them.",
   },
   caseStudy: {
+    label: "Case study",
+    /** Document title; `{title}` is the project name. */
+    documentTitle: "{title} case study",
     allProjects: "All projects",
     role: "Role",
     team: "Team",
@@ -80,6 +83,7 @@ export const en = {
     techStack: "Tech stack",
     onThisPage: "On this page",
     nextProject: "Next case study",
+    visitSite: "Visit the live site",
     diagramHint: "Scroll sideways to see the whole diagram",
     statuses: {
       production: "In production",
@@ -99,6 +103,14 @@ export const en = {
       learnings: "What I Learned",
       gallery: "Gallery",
     },
+  },
+  error: {
+    title: "Something went wrong",
+    description:
+      "This page failed to load. Please try again, or head back to the homepage.",
+    retry: "Try again",
+    backHome: "Back to home",
+    reference: "Error reference",
   },
   notFound: {
     title: "Page not found",
