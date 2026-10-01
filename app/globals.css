@@ -40,6 +40,11 @@
 
   --color-focus: #2e5bf0;
 
+  /* Syntax colors for decorative code cards (on night) */
+  --color-code-keyword: #c4a7ff;
+  --color-code-string: #9be3b8;
+  --color-code-comment: #7c86b0;
+
   --container-page: 75rem;
 
   --radius-control: 0.625rem;
@@ -72,6 +77,21 @@
   --font-mono:
     var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
   --font-hand: var(--font-sriracha), cursive;
+}
+
+/* Soft blue/violet light behind the hero. CSS only: no image request. */
+@utility hero-glow {
+  background:
+    radial-gradient(
+      55rem 32rem at 85% 0%,
+      rgb(46 91 240 / 0.12),
+      transparent 70%
+    ),
+    radial-gradient(
+      40rem 26rem at 5% 10%,
+      rgb(124 92 255 / 0.08),
+      transparent 70%
+    );
 }
 
 @layer base {

@@ -1,18 +1,44 @@
-import { Container } from "@/components/ui/container";
-import { getDictionary } from "@/i18n/dictionaries";
-import { siteName } from "@/lib/site";
+import { Contact } from "@/components/home/contact";
+import { Experience } from "@/components/home/experience";
+import { Hero } from "@/components/home/hero";
+import { ProofStrip } from "@/components/home/proof-strip";
+import { SelectedWork } from "@/components/home/selected-work";
+import { Strengths } from "@/components/home/strengths";
+import { TechStack } from "@/components/home/tech-stack";
+import { getLocale } from "@/i18n/dictionaries";
+import {
+  getExperiences,
+  getFeaturedProjects,
+  getMetrics,
+  getSiteProfile,
+  getSkillGroups,
+  getStrengths,
+} from "@/lib/content";
 
-// Placeholder until the real homepage lands in M2.
+// Section ids match the header nav anchors: work, skills, about, contact.
 export default async function HomePage() {
-  const t = await getDictionary();
+  const locale = await getLocale();
+  const [profile, metrics, projects, strengths, skillGroups, experiences] =
+    await Promise.all([
+      getSiteProfile(locale),
+      getMetrics(locale),
+      getFeaturedProjects(locale),
+      getStrengths(locale),
+      getSkillGroups(locale),
+      getExperiences(locale),
+    ]);
 
   return (
     <main id="main" className="flex-1">
-      <Container className="flex flex-col gap-5 py-24 md:py-32">
-        <h1 className="text-display">{siteName}</h1>
-        <p className="max-w-2xl text-lead text-ink">{t.home.headline}</p>
-        <p className="text-muted">{t.home.status}</p>
-      </Container>
+      <Hero profile={profile} />
+      <ProofStrip metrics={metrics} />
+      <SelectedWork projects={projects} />
+      <div id="skills">
+        <Strengths strengths={strengths} />
+        <TechStack groups={skillGroups} />
+      </div>
+      <Experience items={experiences} />
+      <Contact profile={profile} />
     </main>
   );
 }
