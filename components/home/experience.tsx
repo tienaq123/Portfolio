@@ -31,7 +31,7 @@ export async function Experience({ items }: { items: ExperienceView[] }) {
               <li
                 key={item.id}
                 {...reveal(index)}
-                className="relative grid gap-4 pl-10 md:grid-cols-[9rem_minmax(0,17rem)_1fr] md:gap-8"
+                className="relative grid grid-cols-1 gap-4 pl-10 md:grid-cols-[9rem_minmax(0,17rem)_1fr] md:gap-8"
               >
                 <span
                   aria-hidden="true"

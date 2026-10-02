@@ -24,7 +24,7 @@ export async function ProofStrip({ metrics }: { metrics: MetricView[] }) {
   return (
     <section aria-label={t.home.metricsLabel}>
       <Container>
-        <ul className="grid gap-1 rounded-panel border border-border bg-surface/90 p-2 shadow-card backdrop-blur sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-border">
+        <ul className="grid grid-cols-1 gap-1 rounded-panel border border-border bg-surface/90 p-2 shadow-card sm:grid-cols-2 lg:grid-cols-4 lg:gap-0 lg:divide-x lg:divide-border">
           {metrics.map((metric, index) => {
             const Icon = icons[metric.iconKey];
             return (

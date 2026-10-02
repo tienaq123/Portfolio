@@ -14,7 +14,9 @@ export async function ProjectGrid({
   const [t, locale] = await Promise.all([getDictionary(), getLocale()]);
 
   return (
-    <ul className="grid gap-6 lg:grid-cols-2">
+    // grid-cols-1 = minmax(0, 1fr): an implicit `auto` column lets WebKit grow
+    // it past the container (aspect-ratio screenshot frames), so be explicit.
+    <ul className="grid grid-cols-1 gap-6 lg:grid-cols-2">
       {projects.map((project, index) => (
         <li
           key={project.slug}

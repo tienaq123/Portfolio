@@ -30,7 +30,7 @@ export async function Strengths({ strengths }: { strengths: StrengthView[] }) {
           title={t.home.strengths.title}
           description={t.home.strengths.description}
         />
-        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <ul className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {strengths.map((strength, index) => {
             const Icon = icons[strength.iconKey];
             return (
