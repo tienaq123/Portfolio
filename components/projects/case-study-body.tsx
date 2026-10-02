@@ -2,6 +2,7 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
+import { reveal } from "@/components/ui/motion/reveal";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import type { CaseStudyView, Media } from "@/lib/content";
 import { MarkdownContent } from "./markdown";
@@ -70,6 +71,7 @@ export async function CaseStudyBody({ study }: { study: CaseStudyView }) {
               key={section.type}
               id={section.type}
               aria-labelledby={`${section.type}-title`}
+              {...reveal()}
             >
               <h2 id={`${section.type}-title`} className="text-title">
                 {section.heading}
@@ -89,23 +91,25 @@ export async function CaseStudyBody({ study }: { study: CaseStudyView }) {
 
       {study.next && (
         <Container className="pb-16 lg:pb-24">
-          <Link
-            href={`/${locale}/work/${study.next.slug}`}
-            className="group flex items-center justify-between gap-6 rounded-panel border border-border bg-surface p-6 shadow-card transition-colors hover:border-accent/40 sm:p-8"
-          >
-            <span>
-              <span className="block text-sm text-muted">
-                {labels.nextProject}
+          <div {...reveal()}>
+            <Link
+              href={`/${locale}/work/${study.next.slug}`}
+              className="group flex items-center justify-between gap-6 rounded-panel border border-border bg-surface p-6 shadow-card transition-colors hover:border-accent/40 sm:p-8"
+            >
+              <span>
+                <span className="block text-sm text-muted">
+                  {labels.nextProject}
+                </span>
+                <span className="mt-1 block text-2xl font-bold tracking-tight text-ink">
+                  {study.next.title}
+                </span>
               </span>
-              <span className="mt-1 block text-2xl font-bold tracking-tight text-ink">
-                {study.next.title}
-              </span>
-            </span>
-            <ArrowRight
-              aria-hidden="true"
-              className="size-6 shrink-0 text-accent transition-transform group-hover:translate-x-1"
-            />
-          </Link>
+              <ArrowRight
+                aria-hidden="true"
+                className="size-6 shrink-0 text-accent transition-transform group-hover:translate-x-1"
+              />
+            </Link>
+          </div>
         </Container>
       )}
     </>

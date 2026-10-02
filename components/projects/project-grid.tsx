@@ -1,4 +1,5 @@
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { reveal } from "@/components/ui/motion/reveal";
 import type { ProjectSummary } from "@/lib/content";
 import { ProjectCard } from "./project-card";
 
@@ -17,6 +18,7 @@ export async function ProjectGrid({
       {projects.map((project, index) => (
         <li
           key={project.slug}
+          {...reveal(index)}
           className={index === 0 ? "lg:col-span-2" : undefined}
         >
           <ProjectCard

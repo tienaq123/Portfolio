@@ -8,6 +8,7 @@ import {
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { reveal } from "@/components/ui/motion/reveal";
 import { getDictionary } from "@/i18n/dictionaries";
 import type { StrengthIconKey, StrengthView } from "@/lib/content";
 
@@ -30,10 +31,10 @@ export async function Strengths({ strengths }: { strengths: StrengthView[] }) {
           description={t.home.strengths.description}
         />
         <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {strengths.map((strength) => {
+          {strengths.map((strength, index) => {
             const Icon = icons[strength.iconKey];
             return (
-              <li key={strength.id}>
+              <li key={strength.id} {...reveal(index)}>
                 <Card className="h-full p-6">
                   <Icon
                     aria-hidden="true"
