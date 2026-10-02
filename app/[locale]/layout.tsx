@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { UmamiScript } from "@/components/analytics/umami-script";
+import { ChatLauncher } from "@/components/chat/chat-launcher";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { MotionScript } from "@/components/ui/motion/motion-script";
@@ -38,6 +39,7 @@ export default async function LocaleLayout({
   children,
 }: LayoutProps<"/[locale]">) {
   const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
+  const profile = await getSiteProfile(locale);
 
   return (
     // suppressHydrationWarning: the motion script sets data-motion first.
@@ -57,6 +59,11 @@ export default async function LocaleLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
+        <ChatLauncher
+          locale={locale}
+          email={profile.links.email}
+          strings={t.chat}
+        />
         <UmamiScript />
       </body>
     </html>
