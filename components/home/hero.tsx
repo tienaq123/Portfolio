@@ -65,7 +65,7 @@ function HeroVisual({ profile }: { profile: SiteProfileView }) {
 
   return (
     <div className="relative mx-auto w-full max-w-xl pt-8 lg:max-w-none">
-      <div className="relative ml-auto aspect-5/4 w-full overflow-hidden rounded-panel border border-border bg-surface shadow-card sm:w-[88%]">
+      <div className="relative ml-auto aspect-5/4 w-full overflow-hidden rounded-panel border border-border bg-surface shadow-card motion-safe:animate-rise sm:w-[88%]">
         {photo ? (
           <Image
             src={photo.src}
@@ -89,9 +89,10 @@ function HeroVisual({ profile }: { profile: SiteProfileView }) {
         )}
       </div>
 
-      {/* Decorative accents; the same facts are in the text column. */}
+      {/* Decorative accents; the same facts are in the text column. They
+          settle in once after the photo (no loop). */}
       <div aria-hidden="true">
-        <div className="absolute top-0 right-2 w-60 rounded-card bg-night p-4 font-mono text-[0.6875rem] leading-relaxed text-night-ink shadow-raised sm:right-0 sm:w-68 sm:text-xs">
+        <div className="absolute top-0 right-2 w-60 rounded-card bg-night p-4 font-mono text-[0.6875rem] leading-relaxed text-night-ink shadow-raised motion-safe:animate-rise-fade motion-safe:[animation-delay:120ms] sm:right-0 sm:w-68 sm:text-xs">
           <ol>
             {codeLines.map((line, index) => (
               <li key={line.key} className="flex gap-3 whitespace-pre">
@@ -104,7 +105,7 @@ function HeroVisual({ profile }: { profile: SiteProfileView }) {
           </ol>
         </div>
 
-        <ul className="absolute top-1/3 left-0 hidden flex-col gap-3 rounded-card border border-border bg-surface/90 p-4 text-sm font-medium text-ink shadow-card backdrop-blur sm:flex">
+        <ul className="absolute top-1/3 left-0 hidden flex-col gap-3 rounded-card border border-border bg-surface/90 p-4 text-sm font-medium text-ink shadow-card backdrop-blur motion-safe:animate-rise-fade motion-safe:[animation-delay:200ms] sm:flex">
           {hero.loop.map((step, index) => {
             const Icon = loopIcons[index] ?? Repeat;
             return (
@@ -117,11 +118,11 @@ function HeroVisual({ profile }: { profile: SiteProfileView }) {
         </ul>
 
         {/* Notes sit on a light backdrop so they stay legible over the photo. */}
-        <p className="absolute right-4 bottom-4 -rotate-3 rounded-control bg-surface/85 px-3 py-1.5 text-right font-hand text-base leading-snug whitespace-pre-line text-accent-ink shadow-card backdrop-blur sm:text-lg">
+        <p className="absolute right-4 bottom-4 -rotate-3 rounded-control bg-surface/85 px-3 py-1.5 text-right font-hand text-base leading-snug whitespace-pre-line text-accent-ink shadow-card backdrop-blur motion-safe:animate-rise-fade motion-safe:[animation-delay:280ms] sm:text-lg">
           {hero.tagline}
         </p>
 
-        <p className="absolute bottom-10 -left-6 hidden -rotate-6 rounded-control bg-surface/85 px-3 py-1.5 font-hand text-xl leading-snug whitespace-pre-line text-muted shadow-card backdrop-blur xl:block">
+        <p className="absolute bottom-10 -left-6 hidden -rotate-6 rounded-control bg-surface/85 px-3 py-1.5 font-hand text-xl leading-snug whitespace-pre-line text-muted shadow-card backdrop-blur motion-safe:animate-rise-fade motion-safe:[animation-delay:360ms] xl:block">
           {hero.note}
         </p>
       </div>
@@ -140,7 +141,8 @@ export async function Hero({ profile }: { profile: SiteProfileView }) {
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10 hero-glow" />
       <Container className="grid items-center gap-12 py-12 lg:grid-cols-2 lg:gap-16 lg:py-20">
-        <div className="flex flex-col items-start">
+        {/* Entrance moves only: no opacity, so text paints immediately. */}
+        <div className="flex flex-col items-start motion-safe:animate-rise">
           {profile.availability && (
             <Badge tone="success" dot className="shadow-sm">
               {profile.availability}

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { GitHubMark, LinkedInMark } from "@/components/ui/brand-icon";
 import { buttonVariants } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { reveal } from "@/components/ui/motion/reveal";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { trackAttrs } from "@/lib/analytics/track";
 import type { SiteProfileView } from "@/lib/content";
@@ -47,7 +48,7 @@ export async function Contact({ profile }: { profile: SiteProfileView }) {
   return (
     <section id="contact" aria-labelledby="contact-title" className="bg-night">
       <Container className="flex flex-col gap-8 py-16 lg:flex-row lg:items-center lg:justify-between lg:py-20">
-        <div className="max-w-xl">
+        <div {...reveal()} className="max-w-xl">
           <h2 id="contact-title" className="text-title text-white">
             {contact.title}
           </h2>
@@ -56,7 +57,7 @@ export async function Contact({ profile }: { profile: SiteProfileView }) {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div {...reveal(1)} className="flex flex-wrap items-center gap-3">
           <a
             href={`mailto:${profile.links.email}`}
             className={buttonVariants({ size: "lg" })}

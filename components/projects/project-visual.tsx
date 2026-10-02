@@ -91,7 +91,8 @@ export function ProjectVisual({
             {...imageProps}
             alt={thumbnail.alt}
             fill
-            className="object-cover object-left-top"
+            // Zooms slightly while its card (group/card) is hovered or focused.
+            className="origin-top-left object-cover object-left-top transition-transform duration-500 ease-out motion-safe:group-hover/card:scale-[1.03] motion-safe:group-has-[a:focus-visible]/card:scale-[1.03]"
           />
         ) : (
           <Image

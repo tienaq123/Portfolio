@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { TechBadge } from "@/components/ui/tech-badge";
 import type { ProjectSummary } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { ProjectTitle } from "./project-title";
 import { ProjectVisual } from "./project-visual";
 
 type ProjectCardProps = {
@@ -31,9 +32,10 @@ export function ProjectCard({
       className={cn(
         "relative flex h-full flex-col overflow-hidden",
         wide && "lg:flex-row",
-        // The stretched link draws the focus ring around the whole card.
+        // The stretched link draws the focus ring around the whole card;
+        // keyboard focus gets the same lift as hover.
         href &&
-          "transition-colors hover:border-accent/40 has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-focus",
+          "group/card transition-[translate,box-shadow,border-color] duration-300 ease-out hover:border-accent/40 hover:shadow-raised has-[a:focus-visible]:shadow-raised has-[a:focus-visible]:outline-2 has-[a:focus-visible]:outline-offset-2 has-[a:focus-visible]:outline-focus motion-safe:hover:-translate-y-1 motion-safe:has-[a:focus-visible]:-translate-y-1",
       )}
     >
       <div
@@ -70,7 +72,7 @@ export function ProjectCard({
               event="project_card_clicked"
               data={{ slug: project.slug }}
             >
-              {project.title}
+              <ProjectTitle slug={project.slug}>{project.title}</ProjectTitle>
             </TrackedLink>
           ) : (
             project.title

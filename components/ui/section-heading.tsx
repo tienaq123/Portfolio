@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { reveal } from "./motion/reveal";
 
 type SectionHeadingProps = {
   /** Put on the <h2> so the section can use aria-labelledby. */
@@ -20,6 +21,7 @@ export function SectionHeading({
 }: SectionHeadingProps) {
   return (
     <div
+      {...reveal()}
       className={cn(
         "flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between",
         className,

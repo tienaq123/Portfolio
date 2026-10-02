@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { UmamiScript } from "@/components/analytics/umami-script";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { MotionScript } from "@/components/ui/motion/motion-script";
 import { locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import { getSiteProfile } from "@/lib/content";
@@ -39,8 +40,14 @@ export default async function LocaleLayout({
   const [locale, t] = await Promise.all([getLocale(), getDictionary()]);
 
   return (
-    <html lang={locale} className={`${fontVariables} h-full`}>
+    // suppressHydrationWarning: the motion script sets data-motion first.
+    <html
+      lang={locale}
+      className={`${fontVariables} h-full`}
+      suppressHydrationWarning
+    >
       <body className="flex min-h-full flex-col">
+        <MotionScript />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-control focus:bg-surface focus:px-4 focus:py-3 focus:font-semibold focus:text-ink focus:shadow-raised"

@@ -70,6 +70,26 @@
   --text-title--line-height: 1.2;
   --text-title--letter-spacing: -0.02em;
   --text-title--font-weight: 700;
+
+  /* Motion: short, decelerating, never blocking (M5). */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Entrance on load. `rise` moves only, so it can run on LCP text and images. */
+  --animate-rise: rise 400ms var(--ease-out-soft) both;
+  --animate-rise-fade: rise-fade 500ms var(--ease-out-soft) both;
+
+  @keyframes rise {
+    from {
+      transform: translateY(0.75rem);
+    }
+  }
+
+  @keyframes rise-fade {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
 }
 
 @theme inline {
@@ -129,6 +149,36 @@
   }
 }
 
+/*
+ * Scroll reveal (components/ui/motion). Content is hidden only after the
+ * inline motion script opted the page in (JS on, motion allowed), so with
+ * JS off or reduced motion everything is visible from the first paint.
+ */
+:root[data-motion] [data-reveal] {
+  transition:
+    opacity 600ms var(--ease-out-soft),
+    transform 600ms var(--ease-out-soft);
+  transition-delay: calc(var(--reveal-index, 0) * 80ms);
+}
+
+:root[data-motion] [data-reveal]:not([data-revealed]) {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+
+/* Project title morphs from its card into the case study heading (M5-T8). */
+::view-transition-group(.project-title) {
+  animation-duration: 350ms;
+  animation-timing-function: var(--ease-out-soft);
+}
+
+@media print {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -136,5 +186,11 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
 }

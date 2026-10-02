@@ -1,5 +1,6 @@
 import { Briefcase, GraduationCap } from "lucide-react";
 import { Container } from "@/components/ui/container";
+import { reveal } from "@/components/ui/motion/reveal";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { getDictionary } from "@/i18n/dictionaries";
 import type { ExperienceView } from "@/lib/content";
@@ -24,11 +25,12 @@ export async function Experience({ items }: { items: ExperienceView[] }) {
           description={t.home.experience.description}
         />
         <ol className="relative mt-10 space-y-10 before:absolute before:top-2 before:bottom-2 before:left-1.75 before:w-px before:bg-border">
-          {items.map((item) => {
+          {items.map((item, index) => {
             const Icon = item.type === "education" ? GraduationCap : Briefcase;
             return (
               <li
                 key={item.id}
+                {...reveal(index)}
                 className="relative grid gap-4 pl-10 md:grid-cols-[9rem_minmax(0,17rem)_1fr] md:gap-8"
               >
                 <span

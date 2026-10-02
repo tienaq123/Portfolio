@@ -4,10 +4,13 @@ import { Badge } from "@/components/ui/badge";
 import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Container } from "@/components/ui/container";
+import { CountUp } from "@/components/ui/motion/count-up";
+import { reveal } from "@/components/ui/motion/reveal";
 import { TechBadge } from "@/components/ui/tech-badge";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
 import type { CaseStudyView } from "@/lib/content";
 import { cn } from "@/lib/utils";
+import { ProjectTitle } from "./project-title";
 import { ProjectVisual } from "./project-visual";
 
 export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
@@ -54,7 +57,9 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
             </li>
           ))}
         </ul>
-        <h1 className="mt-4 text-display">{study.title}</h1>
+        <h1 className="mt-4 text-display">
+          <ProjectTitle slug={study.slug}>{study.title}</ProjectTitle>
+        </h1>
         <p className="mt-5 max-w-3xl text-lg leading-relaxed text-ink sm:text-xl">
           {study.impactStatement}
         </p>
@@ -90,11 +95,11 @@ export async function CaseStudyHeader({ study }: { study: CaseStudyView }) {
         {study.keyMetrics.length > 0 && (
           <section aria-label={labels.keyMetrics} className="mt-6">
             <ul className={cn("grid gap-4", columns(study.keyMetrics.length))}>
-              {study.keyMetrics.map((metric) => (
-                <li key={metric.label}>
+              {study.keyMetrics.map((metric, index) => (
+                <li key={metric.label} {...reveal(index)}>
                   <Card className="h-full p-5">
                     <p className="text-3xl font-bold tracking-tight text-accent">
-                      {metric.value}
+                      <CountUp value={metric.value} />
                     </p>
                     <p className="mt-1 text-sm">{metric.label}</p>
                   </Card>
