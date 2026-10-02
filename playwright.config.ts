@@ -32,6 +32,8 @@ export default defineConfig({
     ? undefined
     : {
         command: `pnpm start --port ${PORT}`,
+        // Canned chat answers: no API key in CI (lib/ai/mock.ts).
+        env: { CHAT_MOCK: "1" },
         url: `http://localhost:${PORT}/en`,
         reuseExistingServer: !process.env.CI,
         timeout: 60_000,
