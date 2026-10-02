@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { MotionScript } from "@/components/ui/motion/motion-script";
 import { locales } from "@/i18n/config";
 import { getDictionary, getLocale } from "@/i18n/dictionaries";
+import { chatAvailable } from "@/lib/ai/availability";
 import { getSiteProfile } from "@/lib/content";
 import { siteUrl } from "@/lib/env";
 import { fontVariables } from "../fonts";
@@ -59,11 +60,14 @@ export default async function LocaleLayout({
         <SiteHeader />
         {children}
         <SiteFooter />
-        <ChatLauncher
-          locale={locale}
-          email={profile.links.email}
-          strings={t.chat}
-        />
+        {/* Hidden until the assistant can answer (keys set, then redeploy). */}
+        {chatAvailable() && (
+          <ChatLauncher
+            locale={locale}
+            email={profile.links.email}
+            strings={t.chat}
+          />
+        )}
         <UmamiScript />
       </body>
     </html>

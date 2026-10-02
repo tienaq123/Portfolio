@@ -12,6 +12,10 @@ concurrency:
 jobs:
   verify:
     runs-on: ubuntu-latest
+    # Canned chat answers (no API key in CI): the build shows the launcher and
+    # the E2E suite exercises the chat. Ignored by production builds.
+    env:
+      CHAT_MOCK: "1"
     steps:
       - uses: actions/checkout@v5
 

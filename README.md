@@ -66,7 +66,7 @@ pnpm dev            # http://localhost:3000 → redirects to /en or /vi
 | `pnpm format` / `pnpm format:check` | Prettier with Tailwind class sorting |
 | `pnpm test` | Vitest unit tests (`lib/**/*.test.ts`) |
 | `node scripts/eval-chat.mts --base <url>` | Golden-set eval of the assistant against a running server with a real API key |
-| `pnpm test:e2e` | Playwright smoke + axe against a production server (run `pnpm build` first; once: `pnpm exec playwright install chromium`) |
+| `pnpm test:e2e` | Playwright smoke + axe against a production server (build first with `CHAT_MOCK=1 pnpm build` so the chat launcher exists; once: `pnpm exec playwright install chromium webkit`) |
 
 CI runs lint, typecheck, format check, build and the Playwright suite on every pull request.
 
