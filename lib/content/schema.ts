@@ -153,6 +153,19 @@ export const projectSchema = z
     },
   );
 
+/**
+ * Facts only the AI assistant uses (career preferences, working style…).
+ * Written in English, the assistant's canonical language (D11). Only
+ * `public_ai` entries ever reach the model; the filter lives in code.
+ */
+export const knowledgeSchema = z.object({
+  id: z.string().regex(/^[a-z0-9-]+$/),
+  /** Shown in the chat's "Based on" list. */
+  title: localizedText,
+  visibility: z.enum(["public_ai", "private"]),
+  facts: z.array(z.string().trim().min(1)).min(1),
+});
+
 export type LocalizedText = z.infer<typeof localizedText>;
 export type MediaRef = z.infer<typeof mediaRef>;
 export type SiteProfile = z.infer<typeof siteProfileSchema>;
@@ -162,6 +175,7 @@ export type SkillCategory = z.infer<typeof skillCategorySchema>;
 export type Skill = z.infer<typeof skillSchema>;
 export type Experience = z.infer<typeof experienceSchema>;
 export type Project = z.infer<typeof projectSchema>;
+export type Knowledge = z.infer<typeof knowledgeSchema>;
 export type ProjectSection = z.infer<typeof projectSectionSchema>;
 export type SectionType = (typeof sectionTypes)[number];
 export type BadgeTone = (typeof badgeTones)[number];
