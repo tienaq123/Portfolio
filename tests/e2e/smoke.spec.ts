@@ -85,6 +85,10 @@ test("mobile navigation opens and navigates", async ({ page }) => {
 });
 
 test.describe("accessibility (axe)", () => {
+  // Audit the settled page: a reveal mid-fade has partial opacity and would
+  // fail colour contrast at random. Motion itself is covered in motion.spec.ts.
+  test.use({ reducedMotion: "reduce" });
+
   for (const path of ["/en", "/vi", "/en/work", "/vi/work/prep4u"]) {
     test(`${path} has no serious or critical violations`, async ({ page }) => {
       await page.goto(path);

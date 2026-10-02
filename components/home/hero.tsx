@@ -140,7 +140,7 @@ export async function Hero({ profile }: { profile: SiteProfileView }) {
       className="relative isolate -mt-16 overflow-hidden pt-16 lg:-mt-18 lg:pt-18"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-10 hero-glow" />
-      <Container className="grid items-center gap-12 py-12 lg:grid-cols-2 lg:gap-16 lg:py-20">
+      <Container className="grid grid-cols-1 items-center gap-12 py-12 lg:grid-cols-2 lg:gap-16 lg:py-20">
         {/* Entrance moves only: no opacity, so text paints immediately. */}
         <div className="flex flex-col items-start motion-safe:animate-rise">
           {profile.availability && (

@@ -16,12 +16,12 @@ export async function TechStack({ groups }: { groups: SkillGroupView[] }) {
           title={t.home.stack.title}
           description={t.home.stack.description}
         />
-        <div className="mt-10 grid gap-8 lg:gap-6">
+        <div className="mt-10 grid grid-cols-1 gap-8 lg:gap-6">
           {groups.map((group, index) => (
             <div
               key={group.key}
               {...reveal(index)}
-              className="grid gap-3 lg:grid-cols-[11rem_1fr] lg:items-start"
+              className="grid grid-cols-1 gap-3 lg:grid-cols-[11rem_1fr] lg:items-start"
             >
               <h3 className="text-sm font-semibold tracking-wide text-muted uppercase lg:pt-3">
                 {group.label}

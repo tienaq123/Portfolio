@@ -44,7 +44,7 @@ export async function CaseStudyBody({ study }: { study: CaseStudyView }) {
 
   return (
     <>
-      <Container className="grid gap-12 py-12 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16 lg:py-16">
+      <Container className="grid grid-cols-1 gap-12 py-12 lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16 lg:py-16">
         <nav aria-label={labels.onThisPage} className="hidden lg:block">
           <div className="sticky top-24">
             <p className="text-xs font-semibold tracking-wide text-muted uppercase">
