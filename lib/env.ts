@@ -36,9 +36,20 @@ export const umami =
       }
     : null;
 
-/** Canonical origin: explicit URL in production, the deployment URL on previews, else localhost. */
-export const siteUrl =
-  publicEnv.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000");
+/**
+ * Canonical origin, in order: the explicit URL; on Vercel production the
+ * project's production domain (shortest custom domain, else its vercel.app
+ * alias); on previews the deployment URL; else localhost. Production must not
+ * use VERCEL_URL: per-deployment URLs sit behind Deployment Protection, so
+ * crawlers and link previews can't load canonical URLs or OG images there.
+ */
+function resolveSiteUrl() {
+  if (publicEnv.NEXT_PUBLIC_SITE_URL) return publicEnv.NEXT_PUBLIC_SITE_URL;
+  const { VERCEL_ENV, VERCEL_PROJECT_PRODUCTION_URL, VERCEL_URL } = process.env;
+  if (VERCEL_ENV === "production" && VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  return VERCEL_URL ? `https://${VERCEL_URL}` : "http://localhost:3000";
+}
+
+export const siteUrl = resolveSiteUrl();
