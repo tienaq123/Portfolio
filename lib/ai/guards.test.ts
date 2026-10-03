@@ -34,6 +34,14 @@ describe("isFallback", () => {
     expect(isFallback(FALLBACK.en.replace("'", "’"))).toBe(true);
     expect(isFallback("Tiến built the Readiness Engine.")).toBe(false);
   });
+
+  it("ignores how the sentence ends", () => {
+    const body = FALLBACK.vi.slice(0, -1);
+    expect(isFallback(`${body} — thông tin cá nhân không được chia sẻ.`)).toBe(
+      true,
+    );
+    expect(isFallback(`${FALLBACK.en.slice(0, -1)}, sorry!`)).toBe(true);
+  });
 });
 
 describe("chatRequestSchema", () => {

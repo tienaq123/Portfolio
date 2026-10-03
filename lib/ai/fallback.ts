@@ -9,10 +9,13 @@ export const FALLBACK: Record<Locale, string> = {
 const normalize = (text: string) =>
   text.toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, " ");
 
-/** True when the answer contains either fallback sentence. */
+/**
+ * True when the answer contains either fallback sentence. The final full
+ * stop is ignored: models often continue the sentence with a dash or comma.
+ */
 export function isFallback(text: string) {
   const answer = normalize(text);
   return Object.values(FALLBACK).some((sentence) =>
-    answer.includes(normalize(sentence)),
+    answer.includes(normalize(sentence).replace(/[.!]$/, "")),
   );
 }
