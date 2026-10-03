@@ -104,6 +104,40 @@ export const en = {
       gallery: "Gallery",
     },
   },
+  chat: {
+    launcher: "Ask about Tiến",
+    title: "Ask about Tiến",
+    subtitle: "AI assistant · answers from this portfolio",
+    close: "Close chat",
+    placeholder: "Ask about projects, skills…",
+    send: "Send",
+    suggestionsLabel: "Suggested questions",
+    suggestions: [
+      "What has Tiến built with AI?",
+      "Which project best shows his backend skills?",
+      "Is he open to remote work?",
+      "What did he build on Prep4u?",
+    ],
+    notice:
+      "Questions are stored for 30 days to improve this assistant. Please don't include personal information.",
+    disclaimer: "AI can make mistakes — the case studies have the details.",
+    you: "You",
+    assistant: "Assistant",
+    thinking: "Thinking…",
+    basedOn: "Based on",
+    answerReady: "Answer ready",
+    helpful: "Helpful",
+    notHelpful: "Not helpful",
+    thanks: "Thanks for the feedback.",
+    retry: "Try again",
+    errors: {
+      rateLimited:
+        "You've asked a lot of questions in a short time. Please try again in a few minutes.",
+      unavailable:
+        "The assistant isn't available right now. You can still email Tiến.",
+      failed: "Something went wrong with this answer. Please try again.",
+    },
+  },
   error: {
     title: "Something went wrong",
     description:

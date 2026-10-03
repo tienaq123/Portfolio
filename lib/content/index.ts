@@ -1,12 +1,14 @@
 import { z } from "zod";
 import type { Locale } from "@/i18n/config";
 import { experiencesData } from "./data/experiences";
+import { knowledgeData } from "./data/knowledge";
 import { metricsData, strengthsData } from "./data/highlights";
 import { projectsData } from "./data/projects";
 import { siteProfileData } from "./data/site";
 import { skillCategoriesData, skillsData } from "./data/skills";
 import {
   experienceSchema,
+  knowledgeSchema,
   metricSchema,
   projectSchema,
   siteProfileSchema,
@@ -35,6 +37,7 @@ const skillCategories = z.array(skillCategorySchema).parse(skillCategoriesData);
 const skills = z.array(skillSchema).parse(skillsData);
 const experiences = z.array(experienceSchema).parse(experiencesData);
 const projects = z.array(projectSchema).parse(projectsData);
+const knowledge = z.array(knowledgeSchema).parse(knowledgeData);
 
 const tr = (text: LocalizedText, locale: Locale) => text[locale];
 
@@ -218,3 +221,10 @@ export type CaseStudyView = NonNullable<
   Awaited<ReturnType<typeof getCaseStudy>>
 >;
 export type ProjectStatus = NonNullable<Project["status"]>;
+
+/** Assistant-only facts. Private entries never leave this module. */
+export async function getAiKnowledge() {
+  return knowledge.filter((entry) => entry.visibility === "public_ai");
+}
+
+export type AiKnowledge = Awaited<ReturnType<typeof getAiKnowledge>>[number];

@@ -105,6 +105,40 @@ export const vi: Messages = {
       gallery: "Hình ảnh",
     },
   },
+  chat: {
+    launcher: "Hỏi về Tiến",
+    title: "Hỏi về Tiến",
+    subtitle: "Trợ lý AI · trả lời từ portfolio này",
+    close: "Đóng chat",
+    placeholder: "Hỏi về dự án, kỹ năng…",
+    send: "Gửi",
+    suggestionsLabel: "Câu hỏi gợi ý",
+    suggestions: [
+      "Tiến đã làm gì với AI?",
+      "Dự án nào thể hiện rõ nhất kỹ năng backend?",
+      "Tiến có nhận làm remote không?",
+      "Tiến đã xây dựng gì ở Prep4u?",
+    ],
+    notice:
+      "Câu hỏi được lưu 30 ngày để cải thiện trợ lý. Vui lòng không nhập thông tin cá nhân.",
+    disclaimer: "AI có thể sai — chi tiết nằm trong các case study.",
+    you: "Bạn",
+    assistant: "Trợ lý",
+    thinking: "Đang trả lời…",
+    basedOn: "Dựa trên",
+    answerReady: "Đã có câu trả lời",
+    helpful: "Hữu ích",
+    notHelpful: "Chưa hữu ích",
+    thanks: "Cảm ơn bạn đã góp ý.",
+    retry: "Thử lại",
+    errors: {
+      rateLimited:
+        "Bạn đã hỏi khá nhiều trong thời gian ngắn. Vui lòng thử lại sau vài phút.",
+      unavailable:
+        "Trợ lý tạm thời chưa hoạt động. Bạn vẫn có thể gửi email cho Tiến.",
+      failed: "Câu trả lời gặp lỗi. Vui lòng thử lại.",
+    },
+  },
   error: {
     title: "Đã có lỗi xảy ra",
     description: "Trang này chưa tải được. Hãy thử lại hoặc quay về trang chủ.",

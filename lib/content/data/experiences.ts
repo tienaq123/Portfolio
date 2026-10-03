@@ -7,14 +7,15 @@ export const experiencesData: Experience[] = [
     organization: { en: "Protean Studios", vi: "Protean Studios" },
     role: { en: "Software Engineer", vi: "Software Engineer" },
     startDate: "2025-02",
-    endDate: null,
+    // Owner left at the end of September 2026 (C5 answers, 2026-10-02).
+    endDate: "2026-09",
     highlights: [
       {
-        en: "Build and maintain web applications and backend APIs for EdTech, SaaS, social mobile and AI automation products.",
+        en: "Built and maintained web applications and backend APIs for EdTech, SaaS, social mobile and AI automation products.",
         vi: "Phát triển và bảo trì web application, backend API cho các sản phẩm EdTech, SaaS, social mobile và hệ thống tự động hoá ứng dụng AI.",
       },
       {
-        en: "Own features end to end: business analysis, database design, APIs, UI and production deployment.",
+        en: "Owned features end to end: business analysis, database design, APIs, UI and production deployment.",
         vi: "Phụ trách end-to-end từng feature, từ phân tích nghiệp vụ, thiết kế database, API, UI đến deploy production.",
       },
       {

@@ -13,7 +13,14 @@ export type AnalyticsEvent =
   | "github_clicked"
   | "linkedin_clicked"
   | "email_clicked"
-  | "language_switched";
+  | "language_switched"
+  | "chat_opened"
+  | "suggested_question_clicked"
+  | "chat_question_sent"
+  | "chat_answer_completed"
+  | "chat_source_clicked"
+  | "chat_feedback_positive"
+  | "chat_feedback_negative";
 
 declare global {
   interface Window {
