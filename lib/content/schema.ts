@@ -163,6 +163,8 @@ export const knowledgeSchema = z.object({
   /** Shown in the chat's "Based on" list. */
   title: localizedText,
   visibility: z.enum(["public_ai", "private"]),
+  /** Index line: what questions this entry answers, so the model fetches it. */
+  summary: z.string().trim().min(1),
   facts: z.array(z.string().trim().min(1)).min(1),
 });
 

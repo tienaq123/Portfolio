@@ -165,7 +165,7 @@ async function buildRecords(): Promise<KnowledgeRecord[]> {
       id: `knowledge:${entry.id}`,
       type: "knowledge",
       title: entry.title.en,
-      summary: entry.facts[0] ?? "",
+      summary: entry.summary,
       tags: [entry.id],
       detail: bullets(entry.facts),
     });

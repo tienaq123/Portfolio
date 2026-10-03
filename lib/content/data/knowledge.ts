@@ -5,6 +5,8 @@ import type { Knowledge } from "../schema";
 export const knowledgeData: Knowledge[] = [
   {
     id: "career",
+    summary:
+      "Job search: target role, current status (left Protean in 09/2026), remote / onsite / hybrid, location and relocation, start date, full-time or freelance.",
     title: { en: "Career preferences", vi: "Định hướng công việc" },
     visibility: "public_ai",
     facts: [
@@ -12,11 +14,14 @@ export const knowledgeData: Knowledge[] = [
       "Open to remote, onsite or hybrid work. Based in Hanoi, Vietnam, and not relocating.",
       "Remote work for international teams is possible; his English communication is still improving.",
       "Available to start immediately. Open to full-time or freelance work.",
-      "Left Protean Studios at the end of September 2026 and is available for new opportunities.",
+      "His time at Protean Studios ended at the end of September 2026. He does not share why he left.",
+      "He is available for new opportunities.",
     ],
   },
   {
     id: "principles",
+    summary:
+      "Working style and engineering principles: end-to-end ownership, simple measurable solutions, how he uses AI in production and in development.",
     title: { en: "How he works", vi: "Cách làm việc" },
     visibility: "public_ai",
     facts: [
@@ -29,6 +34,8 @@ export const knowledgeData: Knowledge[] = [
   },
   {
     id: "leadership",
+    summary:
+      "Leading people: the team he led, his management experience, readiness for a lead role.",
     title: { en: "Leadership", vi: "Vai trò lead" },
     visibility: "public_ai",
     facts: [
@@ -38,6 +45,8 @@ export const knowledgeData: Knowledge[] = [
   },
   {
     id: "languages",
+    summary:
+      "Languages (Vietnamese, English level, Japanese), timezone and overlap, experience with Japanese clients.",
     title: { en: "Languages & timezone", vi: "Ngôn ngữ & múi giờ" },
     visibility: "public_ai",
     facts: [
@@ -48,6 +57,8 @@ export const knowledgeData: Knowledge[] = [
   },
   {
     id: "about",
+    summary:
+      "Personal profile: why he left Musashi, his main strength, what he wants to learn, side projects and GitHub.",
     title: { en: "About Tiến", vi: "Về Tiến" },
     visibility: "public_ai",
     facts: [
