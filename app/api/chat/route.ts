@@ -2,7 +2,7 @@ import { randomUUID } from "node:crypto";
 import { after } from "next/server";
 import type { AnswerResult, AnswerStream } from "@/lib/ai/answer";
 import { chatAvailable } from "@/lib/ai/availability";
-import { claudeAnswer } from "@/lib/ai/client";
+import { modelAnswer } from "@/lib/ai/client";
 import { FALLBACK, isFallback } from "@/lib/ai/fallback";
 import { toSources } from "@/lib/ai/knowledge";
 import { createLeakGuard } from "@/lib/ai/leak-guard";
@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     request.signal,
     AbortSignal.timeout(TIMEOUT_MS),
   ]);
-  const answer: AnswerStream = (chatMock ? mockAnswer : claudeAnswer)({
+  const answer: AnswerStream = (chatMock ? mockAnswer : modelAnswer)({
     messages,
     locale,
     signal,

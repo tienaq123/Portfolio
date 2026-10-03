@@ -11,7 +11,7 @@ Bilingual (English / Vietnamese) engineering portfolio: who I am, the products I
 - **Zod** for content and env validation · `react-markdown` + `remark-gfm` for case study bodies
 - **Playwright** + **axe-core** for smoke and accessibility tests · GitHub Actions CI · Vercel
 - **Umami** for cookieless analytics (optional, production only)
-- **AI assistant:** Claude (Anthropic SDK) with tool-based retrieval, Upstash rate limiting, Supabase for 30-day question logs · Vitest for unit tests
+- **AI assistant:** Claude or any OpenAI-compatible model, switched by env (Anthropic and OpenAI SDKs), with tool-based retrieval, Upstash rate limiting, Supabase for 30-day question logs · Vitest for unit tests
 
 ## Architecture
 
@@ -77,7 +77,9 @@ CI runs lint, typecheck, format check, build and the Playwright suite on every p
 | `NEXT_PUBLIC_SITE_URL` | optional | Canonical origin for metadata, sitemap and JSON-LD. Without it, Vercel production uses the project's production domain and previews their deployment URL. |
 | `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Vercel Production | Enables Umami. Empty = no analytics. |
 | `NEXT_PUBLIC_UMAMI_SCRIPT_URL` | optional | Defaults to Umami Cloud. |
-| `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | server | Enable the assistant. |
+| `AI_PROVIDER` | server | `openai` (OpenAI Chat Completions: official or any compatible gateway) or `anthropic`. Optional when only one provider is configured. |
+| `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_BASE_URL` | server | OpenAI-compatible provider. Base URL empty = official OpenAI; set it for a gateway. |
+| `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL`, `ANTHROPIC_BASE_URL` | server | Anthropic provider; base URL only for a compatible proxy. |
 | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | server | Rate limiting; required for the assistant in production. |
 | `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SECRET_KEY` | server | Optional 30-day question log (`supabase/migrations`). |
 | `CRON_SECRET` | server | Authorizes the daily keepalive cron (`vercel.json`). |

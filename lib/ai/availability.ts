@@ -1,6 +1,6 @@
 import "server-only";
 import {
-  anthropicConfig,
+  aiConfig,
   chatMock,
   isProduction,
   upstashConfig,
@@ -13,6 +13,6 @@ import {
  */
 export function chatAvailable() {
   if (chatMock) return true;
-  if (!anthropicConfig) return false;
+  if (!aiConfig) return false;
   return !isProduction || upstashConfig !== null;
 }
