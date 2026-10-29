@@ -22,6 +22,7 @@ const env = z
     NEXT_PUBLIC_SUPABASE_URL: optional(z.url()),
     SUPABASE_SECRET_KEY: optional(z.string().min(1)),
     CRON_SECRET: optional(z.string().min(16)),
+    REVALIDATE_SECRET: optional(z.string().min(16)),
     CHAT_MOCK: optional(z.enum(["1"])),
   })
   .parse({
@@ -37,6 +38,7 @@ const env = z
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
     CRON_SECRET: process.env.CRON_SECRET,
+    REVALIDATE_SECRET: process.env.REVALIDATE_SECRET,
     CHAT_MOCK: process.env.CHAT_MOCK,
   });
 
@@ -58,6 +60,9 @@ export const supabaseConfig =
     : null;
 
 export const cronSecret = env.CRON_SECRET ?? null;
+
+/** Shared with the Supabase database webhooks that call /api/revalidate. */
+export const revalidateSecret = env.REVALIDATE_SECRET ?? null;
 
 export type AiProvider = "anthropic" | "openai";
 
