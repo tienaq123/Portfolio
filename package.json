@@ -16,7 +16,7 @@
     "db:stop": "supabase stop",
     "db:reset": "supabase db reset",
     "db:seed:generate": "tsx scripts/generate-seed.ts",
-    "db:types": "supabase gen types typescript --local > types/database.ts && prettier --write types/database.ts",
+    "db:types": "supabase gen types typescript --local > types/database.ts.tmp && mv types/database.ts.tmp types/database.ts && prettier --write types/database.ts || (rm -f types/database.ts.tmp && exit 1)",
     "test:visual": "playwright test --config playwright.visual.config.ts",
     "test:db": "vitest run --project db"
   },
