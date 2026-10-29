@@ -174,12 +174,12 @@ async function buildRecords(): Promise<KnowledgeRecord[]> {
   return records;
 }
 
-// Content is static per deployment, so the records are built once.
-let recordsPromise: Promise<KnowledgeRecord[]> | undefined;
-
+/**
+ * Built per request from the content service, which is already cached and
+ * revalidated with the site (M7): edits reach the assistant without a deploy.
+ */
 export function getKnowledgeRecords() {
-  recordsPromise ??= buildRecords();
-  return recordsPromise;
+  return buildRecords();
 }
 
 /** Sent with every request: one line per record. */

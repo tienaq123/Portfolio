@@ -29,7 +29,10 @@ app/
   sitemap.ts, robots.ts
 i18n/                       locale config, negotiation, dictionaries (next/root-params)
 messages/                   UI strings — vi.ts is typed against en.ts
-lib/content/                portfolio content + Zod schema + async getters
+lib/content/                content service: Zod schema, cached getters, Supabase reader;
+                            data/ = seed + fallback when no database is configured
+supabase/                   migrations (schema, RLS, webhooks) + generated seed.sql
+types/database.ts           generated from the schema (pnpm db:types)
 lib/seo/, lib/og/           metadata, JSON-LD, OG image rendering
 lib/analytics/              typed Umami wrapper (no-op when disabled)
 lib/ai/, app/api/chat/      assistant: knowledge, prompt, Claude client, limits, storage
@@ -41,7 +44,8 @@ tests/e2e/                  Playwright smoke + axe
 Decisions worth knowing:
 
 - **Locale is a root segment, not a prop.** `[locale]` is the root layout; server code reads it with `getLocale()` (built on `next/root-params`). Client Components get their strings as props.
-- **Content is data, validated at build time.** Projects, experience and case studies live in `lib/content/data/` and are parsed with Zod on import, so a missing translation or malformed entry fails the build. Pages only use the async getters in `lib/content`, so the source can move to a database later without touching components.
+- **Content lives in Supabase, validated on every load.** Pages only use the async getters in `lib/content`. They read every content table with the publishable key — RLS returns published rows only, so drafts and private assistant knowledge cannot leak even through a bug — and validate the whole result with the same Zod schemas as before; a bad row fails the revalidation, not a page. The static files in `lib/content/data/` are the seed (`supabase/seed.sql` is generated from them) and the fallback when no database is configured.
+- **Cached until content changes.** The content is one `"use cache"` entry tagged `content` (`cacheLife("max")`), so pages stay static. A database webhook on every content table calls `/api/revalidate`, which revalidates the tag: an edit in Supabase Studio shows up without a deploy, and if the database is down the last good pages keep being served.
 - **Static by default.** Every locale × page is prerendered, including the OG images. Unknown case study slugs return a real HTTP 404.
 - **SEO per locale.** Each page sets its canonical URL, `hreflang` alternates (with `x-default` → English), Open Graph and Twitter metadata; the homepage carries `Person` + `WebSite` JSON-LD. OG images load a subset of Plus Jakarta Sans explicitly, because the default font has no Vietnamese glyphs.
 - **An assistant that cannot make things up about the owner.** The model gets a compact index of the published content and fetches details with a `get_details` tool; sources shown under each answer are the records it fetched. Only published records and `public_ai` knowledge exist on the server side, so the rule holds even if the prompt is bypassed. A leak guard stops the stream if the prompt's canary ever appears. The chat panel is a lazy chunk loaded on intent, and the API refuses to run in production without rate limiting.
@@ -66,6 +70,11 @@ pnpm dev            # http://localhost:3000 → redirects to /en or /vi
 | `pnpm format` / `pnpm format:check` | Prettier with Tailwind class sorting |
 | `pnpm test` | Vitest unit tests (`lib/**/*.test.ts`) |
 | `node scripts/eval-chat.mts --base <url>` | Golden-set eval of the assistant against a running server with a real API key |
+| `pnpm db:start` / `pnpm db:reset` | Local Supabase in Docker; reset applies the migrations and the seed |
+| `pnpm db:seed:generate` | Regenerate `supabase/seed.sql` from `lib/content/data` |
+| `pnpm db:types` | Regenerate `types/database.ts` from the local schema |
+| `pnpm test:db` | RLS and seed round-trip tests against the local stack |
+| `pnpm test:visual` | Before/after screenshots (`--update-snapshots` first) when changing the content source |
 | `pnpm test:e2e` | Playwright smoke + axe against a production server (build first with `CHAT_MOCK=1 pnpm build` so the chat launcher exists; once: `pnpm exec playwright install chromium webkit`) |
 
 CI runs lint, typecheck, format check, build and the Playwright suite on every pull request.
@@ -81,7 +90,9 @@ CI runs lint, typecheck, format check, build and the Playwright suite on every p
 | `OPENAI_API_KEY`, `OPENAI_MODEL`, `OPENAI_BASE_URL` | server | OpenAI-compatible provider. Base URL empty = official OpenAI; set it for a gateway. |
 | `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL`, `ANTHROPIC_BASE_URL` | server | Anthropic provider; base URL only for a compatible proxy. |
 | `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN` | server | Rate limiting; required for the assistant in production. |
-| `NEXT_PUBLIC_SUPABASE_URL`, `SUPABASE_SECRET_KEY` | server | Optional 30-day question log (`supabase/migrations`). |
+| `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | build | Read content from Supabase (RLS); without them the seed data is used. Inlined at build: redeploy after a change. |
+| `SUPABASE_SECRET_KEY` | server | Writes the 30-day question log. Bypasses RLS: never used for public reads. |
+| `REVALIDATE_SECRET` | server | Shared with the database webhooks that call `/api/revalidate`. |
 | `CRON_SECRET` | server | Authorizes the daily keepalive cron (`vercel.json`). |
 | `CHAT_MOCK=1` | tests | Canned answers without an API key; ignored in production. |
 
@@ -89,8 +100,9 @@ CI runs lint, typecheck, format check, build and the Playwright suite on every p
 
 - **V1** — homepage, project list, four bilingual case studies, SEO, analytics, tests.
 - **V1.1** — restrained motion.
-- **V1.5** (in progress) — the AI assistant.
-- Next — a database and a small CMS for content.
+- **V1.5** — the AI assistant.
+- **V1.6** (in progress) — content in Supabase.
+- Next — a small admin CMS.
 
 ## Content and fonts
 

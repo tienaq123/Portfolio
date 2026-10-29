@@ -13,11 +13,24 @@ const securityHeaders = [
   },
 ];
 
+// Public files in Supabase Storage (M8 uploads), when a project is set.
+const supabaseStorage = process.env.NEXT_PUBLIC_SUPABASE_URL
+  ? [
+      new URL(
+        "/storage/v1/object/public/**",
+        process.env.NEXT_PUBLIC_SUPABASE_URL,
+      ),
+    ]
+  : [];
+
 const nextConfig: NextConfig = {
   cacheComponents: true,
   poweredByHeader: false,
   // AVIF first (smaller photos and screenshots), WebP as the fallback.
-  images: { formats: ["image/avif", "image/webp"] },
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: supabaseStorage,
+  },
   experimental: {
     // The root layout sits under the dynamic [locale] segment, so unmatched URLs
     // need app/global-not-found.tsx (see Next.js not-found docs).

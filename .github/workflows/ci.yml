@@ -43,3 +43,24 @@ jobs:
           name: playwright-traces
           path: test-results/
           retention-days: 7
+
+  # M7: schema, RLS and the seed against a local Supabase stack (Docker).
+  database:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # The seed is generated from lib/content/data: it must be up to date.
+      - run: pnpm db:seed:generate && git diff --exit-code supabase/seed.sql
+
+      - run: pnpm db:start
+      - run: pnpm test:db
+
+      # Generated types must match the migrations.
+      - run: pnpm db:types && git diff --exit-code types/database.ts
