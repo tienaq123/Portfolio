@@ -1,3 +1,7 @@
 allowBuilds:
+  # tsx works with esbuild's prebuilt binary; no install script needed.
+  esbuild: false
   sharp: false
   unrs-resolver: false
+  # Downloads the Supabase CLI binary (M7: local database, migrations).
+  supabase: true
