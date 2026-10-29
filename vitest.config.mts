@@ -8,10 +8,25 @@ export default defineConfig({
     alias: {
       "@": root("./"),
       "server-only": root("./tests/unit/server-only.ts"),
+      "next/cache": root("./tests/unit/next-cache.ts"),
     },
   },
   test: {
-    include: ["lib/**/*.test.ts"],
     environment: "node",
+    projects: [
+      // pnpm test
+      { extends: true, test: { name: "unit", include: ["lib/**/*.test.ts"] } },
+      // pnpm test:db — needs the local stack: pnpm db:start && pnpm db:reset
+      {
+        extends: true,
+        test: {
+          name: "db",
+          include: ["tests/db/**/*.test.ts"],
+          testTimeout: 20_000,
+          hookTimeout: 60_000,
+          fileParallelism: false,
+        },
+      },
+    ],
   },
 });

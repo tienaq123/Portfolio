@@ -53,3 +53,6 @@ next-env.d.ts
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# M7 visual regression baseline (local before/after check)
+/.visual-baseline/
