@@ -1,3 +1,7 @@
+// SEED DATA (M7). When Supabase is configured the database is the source of
+// truth: edit content there (Supabase Studio, later the CMS). This file is the
+// seed (`pnpm db:seed:generate`) and the fallback when no database is set up
+// (local development without Supabase, CI). See lib/content/store.ts.
 import type { Experience } from "../schema";
 
 export const experiencesData: Experience[] = [

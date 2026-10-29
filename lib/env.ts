@@ -14,12 +14,23 @@ const publicEnv = z
       emptyToUndefined,
       z.url().default("https://cloud.umami.is/script.js"),
     ),
+    NEXT_PUBLIC_SUPABASE_URL: z.preprocess(
+      emptyToUndefined,
+      z.url().optional(),
+    ),
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: z.preprocess(
+      emptyToUndefined,
+      z.string().min(1).optional(),
+    ),
   })
   .parse({
     // Referenced literally so Next.js can inline NEXT_PUBLIC_* values at build time.
     NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
     NEXT_PUBLIC_UMAMI_WEBSITE_ID: process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID,
     NEXT_PUBLIC_UMAMI_SCRIPT_URL: process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL,
+    NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
+    NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY:
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
   });
 
 /**
@@ -53,3 +64,16 @@ function resolveSiteUrl() {
 }
 
 export const siteUrl = resolveSiteUrl();
+
+/**
+ * Public, RLS-protected read access to the content database (M7). Without
+ * it the site renders the static seed data in lib/content/data.
+ */
+export const supabasePublic =
+  publicEnv.NEXT_PUBLIC_SUPABASE_URL &&
+  publicEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+    ? {
+        url: publicEnv.NEXT_PUBLIC_SUPABASE_URL,
+        publishableKey: publicEnv.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
+      }
+    : null;

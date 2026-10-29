@@ -1,43 +1,48 @@
-import { z } from "zod";
+import { cacheLife, cacheTag } from "next/cache";
 import type { Locale } from "@/i18n/config";
-import { experiencesData } from "./data/experiences";
-import { knowledgeData } from "./data/knowledge";
-import { metricsData, strengthsData } from "./data/highlights";
-import { projectsData } from "./data/projects";
-import { siteProfileData } from "./data/site";
-import { skillCategoriesData, skillsData } from "./data/skills";
-import {
-  experienceSchema,
-  knowledgeSchema,
-  metricSchema,
-  projectSchema,
-  siteProfileSchema,
-  skillCategorySchema,
-  skillSchema,
-  strengthSchema,
-  type Experience,
-  type LocalizedText,
-  type MediaRef,
-  type Metric,
-  type Project,
-  type Strength,
+import { createPublicClient } from "@/lib/supabase/public";
+import type {
+  Experience,
+  LocalizedText,
+  MediaRef,
+  Metric,
+  Project,
+  Strength,
 } from "./schema";
+import { staticContent, type ContentStore } from "./store";
+import { fetchContent } from "./supabase";
 
 /*
  * Content service. Pages call these async getters and pass the localized
- * results to components as props. The static data is validated once at
- * import, so a missing translation or a bad shape fails the build. In M7 the
- * implementation moves to Supabase behind the same signatures.
+ * results to components as props. Since M7 the content comes from Supabase
+ * (RLS: published rows only) when it is configured, else from the static
+ * seed data — same shapes, validated with the same Zod schemas.
  */
 
-const profile = siteProfileSchema.parse(siteProfileData);
-const metrics = z.array(metricSchema).parse(metricsData);
-const strengths = z.array(strengthSchema).parse(strengthsData);
-const skillCategories = z.array(skillCategorySchema).parse(skillCategoriesData);
-const skills = z.array(skillSchema).parse(skillsData);
-const experiences = z.array(experienceSchema).parse(experiencesData);
-const projects = z.array(projectSchema).parse(projectsData);
-const knowledge = z.array(knowledgeSchema).parse(knowledgeData);
+/** Cache tag of every piece of content; /api/revalidate refreshes it. */
+export const CONTENT_TAG = "content";
+
+/**
+ * All content, cached across requests and builds until revalidated. Pages
+ * stay static: the first render fills the cache, edits refresh it through
+ * revalidateTag(CONTENT_TAG). A failing database throws here, so Next.js
+ * keeps serving the last good pages.
+ */
+async function getStore(): Promise<ContentStore> {
+  "use cache";
+  cacheLife("max");
+  cacheTag(CONTENT_TAG);
+  const client = createPublicClient();
+  if (!client) return staticContent();
+  try {
+    return await fetchContent(client);
+  } catch (error) {
+    // Rethrown: Next.js keeps the last good pages. Logged so an outage or a
+    // bad row is visible in the server logs.
+    console.error("[content] could not load from Supabase:", error);
+    throw error;
+  }
+}
 
 const tr = (text: LocalizedText, locale: Locale) => text[locale];
 
@@ -52,11 +57,15 @@ export type Media = ReturnType<typeof localizeMedia>;
 
 /** CV for the locale, falling back to the other language while one is missing. */
 export async function getCvFile(locale: Locale): Promise<string | null> {
+  const { profile } = await getStore();
   return profile.cv[locale] ?? profile.cv.en ?? profile.cv.vi;
 }
 
 export async function getSiteProfile(locale: Locale) {
-  const cvFile = await getCvFile(locale);
+  const [{ profile }, cvFile] = await Promise.all([
+    getStore(),
+    getCvFile(locale),
+  ]);
   return {
     name: profile.name,
     alternateName: profile.alternateName,
@@ -84,6 +93,7 @@ export async function getSiteProfile(locale: Locale) {
 export type SiteProfileView = Awaited<ReturnType<typeof getSiteProfile>>;
 
 export async function getMetrics(locale: Locale) {
+  const { metrics } = await getStore();
   return metrics
     .filter((metric) => metric.published)
     .sort(bySortOrder)
@@ -100,6 +110,7 @@ export type MetricView = Awaited<ReturnType<typeof getMetrics>>[number];
 export type MetricIconKey = Metric["iconKey"];
 
 export async function getStrengths(locale: Locale) {
+  const { strengths } = await getStore();
   return strengths
     .filter((strength) => strength.published)
     .sort(bySortOrder)
@@ -115,6 +126,7 @@ export type StrengthView = Awaited<ReturnType<typeof getStrengths>>[number];
 export type StrengthIconKey = Strength["iconKey"];
 
 export async function getSkillGroups(locale: Locale) {
+  const { skillCategories, skills } = await getStore();
   return [...skillCategories].sort(bySortOrder).map((category) => ({
     key: category.key,
     label: tr(category.label, locale),
@@ -128,6 +140,7 @@ export async function getSkillGroups(locale: Locale) {
 export type SkillGroupView = Awaited<ReturnType<typeof getSkillGroups>>[number];
 
 export async function getExperiences(locale: Locale) {
+  const { experiences } = await getStore();
   return experiences
     .filter((experience) => experience.published)
     .sort(bySortOrder)
@@ -145,7 +158,7 @@ export async function getExperiences(locale: Locale) {
 export type ExperienceView = Awaited<ReturnType<typeof getExperiences>>[number];
 export type ExperienceType = Experience["type"];
 
-function localizeProject(project: (typeof projects)[number], locale: Locale) {
+function localizeProject(project: Project, locale: Locale) {
   return {
     slug: project.slug,
     title: project.title,
@@ -169,29 +182,36 @@ function localizeProject(project: (typeof projects)[number], locale: Locale) {
 
 export type ProjectSummary = ReturnType<typeof localizeProject>;
 
-const publishedProjects = () =>
-  projects.filter((project) => project.published).sort(bySortOrder);
+async function publishedProjects() {
+  const { projects } = await getStore();
+  return projects.filter((project) => project.published).sort(bySortOrder);
+}
 
 export async function getProjects(locale: Locale) {
-  return publishedProjects().map((project) => localizeProject(project, locale));
+  return (await publishedProjects()).map((project) =>
+    localizeProject(project, locale),
+  );
 }
 
 export async function getFeaturedProjects(locale: Locale) {
-  return publishedProjects()
+  return (await publishedProjects())
     .filter((project) => project.featured)
     .map((project) => localizeProject(project, locale));
 }
 
-const caseStudies = () =>
-  publishedProjects().filter((project) => project.sections.length > 0);
+async function caseStudies() {
+  return (await publishedProjects()).filter(
+    (project) => project.sections.length > 0,
+  );
+}
 
 export async function getCaseStudySlugs() {
-  return caseStudies().map((project) => project.slug);
+  return (await caseStudies()).map((project) => project.slug);
 }
 
 /** Full case study for /work/[slug]; null when the slug has no published case study. */
 export async function getCaseStudy(slug: string, locale: Locale) {
-  const list = caseStudies();
+  const list = await caseStudies();
   const index = list.findIndex((project) => project.slug === slug);
   const project = list[index];
   if (!project) return null;
@@ -222,8 +242,12 @@ export type CaseStudyView = NonNullable<
 >;
 export type ProjectStatus = NonNullable<Project["status"]>;
 
-/** Assistant-only facts. Private entries never leave this module. */
+/**
+ * Assistant-only facts. Private entries never leave this module (and with
+ * the database, RLS never even returns them).
+ */
 export async function getAiKnowledge() {
+  const { knowledge } = await getStore();
   return knowledge.filter((entry) => entry.visibility === "public_ai");
 }
 
