@@ -58,8 +58,9 @@ export async function POST(request: Request) {
   });
 
   // Resolved by the stream; stored after the response so it never slows it.
-  let finish: (row: { sources: string[]; fallback: boolean } | null) => void;
-  const finished = new Promise<{ sources: string[]; fallback: boolean } | null>(
+  type Finished = { sources: string[]; fallback: boolean; answer: string };
+  let finish: (row: Finished | null) => void;
+  const finished = new Promise<Finished | null>(
     (resolve) => (finish = resolve),
   );
   after(async () => {
@@ -72,6 +73,7 @@ export async function POST(request: Request) {
       locale,
       sources: row.sources,
       wasFallback: row.fallback,
+      answer: row.answer,
     });
   });
 
@@ -113,7 +115,11 @@ export async function POST(request: Request) {
         const fallback = isFallback(text);
         const sources = fallback ? [] : await toSources(result.usedIds, locale);
         send({ type: "done", questionId, sources, fallback });
-        finish({ sources: sources.map((source) => source.id), fallback });
+        finish({
+          sources: sources.map((source) => source.id),
+          fallback,
+          answer: text.trim(),
+        });
       } catch (error) {
         console.error("[chat] answer failed:", error);
         send({ type: "error", code: "failed" });

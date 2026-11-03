@@ -120,7 +120,7 @@ export const vi: Messages = {
       "Tiến đã xây dựng gì ở Prep4u?",
     ],
     notice:
-      "Câu hỏi được lưu 30 ngày để cải thiện trợ lý. Vui lòng không nhập thông tin cá nhân.",
+      "Câu hỏi và câu trả lời được lưu 30 ngày để cải thiện trợ lý. Vui lòng không nhập thông tin cá nhân.",
     disclaimer: "AI có thể sai — chi tiết nằm trong các case study.",
     you: "Bạn",
     assistant: "Trợ lý",

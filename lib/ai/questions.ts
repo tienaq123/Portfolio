@@ -27,6 +27,7 @@ export type QuestionRow = {
   locale: string;
   sources: string[];
   wasFallback: boolean;
+  answer: string;
 };
 
 export async function saveQuestion(row: QuestionRow) {
@@ -39,6 +40,7 @@ export async function saveQuestion(row: QuestionRow) {
     locale: row.locale,
     sources: row.sources,
     was_fallback: row.wasFallback,
+    answer: row.answer.slice(0, 8000),
   });
   if (error)
     console.error("[chat] could not store the question:", error.message);
@@ -67,4 +69,52 @@ export async function pingDatabase() {
   return error
     ? { ok: false as const, reason: error.message }
     : { ok: true as const };
+}
+
+// ── Admin dashboard (/admin) ────────────────────────────────────────────────
+
+export type StoredQuestion = {
+  id: string;
+  sessionId: string;
+  question: string;
+  answer: string | null;
+  locale: string;
+  sources: string[];
+  wasFallback: boolean;
+  rating: 1 | -1 | null;
+  createdAt: string;
+};
+
+/** null = Supabase is not configured. Newest first, the whole 30-day window. */
+export async function listQuestions(): Promise<StoredQuestion[] | null> {
+  const supabase = getSupabase();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from(TABLE)
+    .select(
+      "id, session_id, question, answer, locale, sources, was_fallback, rating, created_at",
+    )
+    .order("created_at", { ascending: false })
+    .limit(2000);
+  if (error)
+    throw new Error(`[chat] could not list questions: ${error.message}`);
+  return (data ?? []).map((row) => ({
+    id: row.id,
+    sessionId: row.session_id,
+    question: row.question,
+    answer: row.answer,
+    locale: row.locale,
+    sources: row.sources ?? [],
+    wasFallback: row.was_fallback,
+    rating: row.rating === 1 || row.rating === -1 ? row.rating : null,
+    createdAt: row.created_at,
+  }));
+}
+
+export async function deleteQuestion(id: string) {
+  const supabase = getSupabase();
+  if (!supabase) return;
+  const { error } = await supabase.from(TABLE).delete().eq("id", id);
+  if (error)
+    throw new Error(`[chat] could not delete a question: ${error.message}`);
 }

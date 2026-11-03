@@ -119,7 +119,7 @@ export const en = {
       "What did he build on Prep4u?",
     ],
     notice:
-      "Questions are stored for 30 days to improve this assistant. Please don't include personal information.",
+      "Questions and answers are stored for 30 days to improve this assistant. Please don't include personal information.",
     disclaimer: "AI can make mistakes — the case studies have the details.",
     you: "You",
     assistant: "Assistant",
