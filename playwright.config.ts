@@ -33,7 +33,12 @@ export default defineConfig({
     : {
         command: `pnpm start --port ${PORT}`,
         // Canned chat answers: no API key in CI (lib/ai/mock.ts).
-        env: { CHAT_MOCK: "1" },
+        // Never write to a real database from tests, whatever .env.local holds.
+        env: {
+          CHAT_MOCK: "1",
+          ADMIN_PASSWORD: "e2e-admin-password",
+          SUPABASE_SECRET_KEY: "",
+        },
         url: `http://localhost:${PORT}/en`,
         reuseExistingServer: !process.env.CI,
         timeout: 60_000,

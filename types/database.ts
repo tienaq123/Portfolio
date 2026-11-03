@@ -52,6 +52,7 @@ export type Database = {
       };
       chat_questions: {
         Row: {
+          answer: string | null;
           created_at: string;
           id: string;
           locale: string;
@@ -63,6 +64,7 @@ export type Database = {
         };
         ComputedFields: never;
         Insert: {
+          answer?: string | null;
           created_at?: string;
           id: string;
           locale: string;
@@ -73,6 +75,7 @@ export type Database = {
           was_fallback?: boolean;
         };
         Update: {
+          answer?: string | null;
           created_at?: string;
           id?: string;
           locale?: string;

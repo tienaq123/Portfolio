@@ -10,7 +10,7 @@ export const knowledgeData: Knowledge[] = [
   {
     id: "career",
     summary:
-      "Job search: target role, current status (left Protean in 09/2026), remote / onsite / hybrid, location and relocation, start date, full-time or freelance.",
+      "Job search: target role, current status (left Protean in 10/2026), remote / onsite / hybrid, location and relocation, start date, full-time or freelance.",
     title: { en: "Career preferences", vi: "Định hướng công việc" },
     visibility: "public_ai",
     facts: [
@@ -18,7 +18,7 @@ export const knowledgeData: Knowledge[] = [
       "Open to remote, onsite or hybrid work. Based in Hanoi, Vietnam, and not relocating.",
       "Remote work for international teams is possible; his English communication is still improving.",
       "Available to start immediately. Open to full-time or freelance work.",
-      "His time at Protean Studios ended at the end of September 2026. He does not share why he left.",
+      "His time at Protean Studios ended in October 2026. He does not share why he left.",
       "He is available for new opportunities.",
     ],
   },
