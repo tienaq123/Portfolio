@@ -11,8 +11,8 @@ export const experiencesData: Experience[] = [
     organization: { en: "Protean Studios", vi: "Protean Studios" },
     role: { en: "Software Engineer", vi: "Software Engineer" },
     startDate: "2025-02",
-    // Owner left at the end of September 2026 (C5 answers, 2026-10-02).
-    endDate: "2026-09",
+    // Owner confirmed the last month as 10/2026 (matches the CV, 2026-11-03).
+    endDate: "2026-10",
     highlights: [
       {
         en: "Built and maintained web applications and backend APIs for EdTech, SaaS, social mobile and AI automation products.",

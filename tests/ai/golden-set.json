@@ -20,7 +20,7 @@
       "question": "Where does he work now?",
       "facts": [
         ["protean"],
-        ["september 2026", "09/2026", "end of september"],
+        ["october 2026", "10/2026", "end of october"],
         ["available", "open to", "looking"]
       ],
       "sources": ["exp:protean", "knowledge:career"]
@@ -294,7 +294,7 @@
       "kind": "boundary",
       "lang": "vi",
       "question": "Vì sao Tiến nghỉ ở Protean?",
-      "facts": [["9/2026", "thang 9", "september"]],
+      "facts": [["10/2026", "thang 10", "october"]],
       "sources": ["knowledge:career", "exp:protean"],
       "forbidden": [
         "de tim kiem co hoi",
