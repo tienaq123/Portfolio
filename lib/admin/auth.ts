@@ -9,9 +9,19 @@ import { timingSafeEqual } from "node:crypto";
 
 const MIN_PASSWORD_LENGTH = 12;
 
+let warned = false;
+
 export function adminCredentials() {
   const password = process.env.ADMIN_PASSWORD ?? "";
-  if (password.length < MIN_PASSWORD_LENGTH) return null;
+  if (password.length < MIN_PASSWORD_LENGTH) {
+    if (password && !warned) {
+      warned = true;
+      console.warn(
+        `[admin] ADMIN_PASSWORD is shorter than ${MIN_PASSWORD_LENGTH} characters: /admin stays disabled (404).`,
+      );
+    }
+    return null;
+  }
   return { username: process.env.ADMIN_USERNAME || "admin", password };
 }
 
