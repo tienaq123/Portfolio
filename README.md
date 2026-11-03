@@ -96,13 +96,24 @@ CI runs lint, typecheck, format check, build and the Playwright suite on every p
 | `CRON_SECRET` | server | Authorizes the daily keepalive cron (`vercel.json`). |
 | `CHAT_MOCK=1` | tests | Canned answers without an API key; ignored in production. |
 
+## Editing content
+
+There is no admin UI on purpose: content is edited in **Supabase Studio → Table Editor**, and every change triggers a database webhook that refreshes the site (no deploy). The next visit to a page may still show the cached version while it regenerates; the one after shows the change.
+
+- **Text in both languages** is JSON: `{"en": "…", "vi": "…"}`. Both keys are required and non-empty — the database rejects anything else.
+- **Drafts:** set `published` to `false` to hide a row (project, metric, strength, skill, experience); `sort_order` sets the order.
+- **Case studies:** one row per section in `project_sections` (`type` = context, problem, responsibility, …); `body` is Markdown in both languages. A project gets its case study page once it has sections and an `impact_statement`.
+- **Assistant knowledge:** `knowledge_entries`, English facts (`facts`), `visibility = public_ai`; the `summary` says which questions an entry answers.
+- **Images:** add files under `public/images/` (needs a deploy), or upload them to a public Supabase Storage bucket and use the file URL as `src`.
+- **A bad edit cannot break the site:** every load is validated; an invalid row makes that refresh fail and the last good pages stay online (see the Vercel logs for `[content]`).
+- **Local development** shows the seed in `lib/content/data`, which is not updated by edits in Studio. To preview live content locally, put the production `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (read-only, RLS) in `.env.local`.
+
 ## Roadmap
 
 - **V1** — homepage, project list, four bilingual case studies, SEO, analytics, tests.
 - **V1.1** — restrained motion.
 - **V1.5** — the AI assistant.
-- **V1.6** (in progress) — content in Supabase.
-- Next — a small admin CMS.
+- **V1.6** — content in Supabase, edited in Supabase Studio. A custom admin CMS was dropped as unnecessary for a one-person site.
 
 ## Content and fonts
 
