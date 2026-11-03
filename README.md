@@ -93,6 +93,7 @@ CI runs lint, typecheck, format check, build and the Playwright suite on every p
 | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | build | Read content from Supabase (RLS); without them the seed data is used. Inlined at build: redeploy after a change. |
 | `SUPABASE_SECRET_KEY` | server | Writes the 30-day question log. Bypasses RLS: never used for public reads. |
 | `REVALIDATE_SECRET` | server | Shared with the database webhooks that call `/api/revalidate`. |
+| `ADMIN_PASSWORD`, `ADMIN_USERNAME` | server | Basic auth for `/admin` (username defaults to `admin`); unset = no dashboard. |
 | `CRON_SECRET` | server | Authorizes the daily keepalive cron (`vercel.json`). |
 | `CHAT_MOCK=1` | tests | Canned answers without an API key; ignored in production. |
 
@@ -107,6 +108,10 @@ There is no admin UI on purpose: content is edited in **Supabase Studio → Tabl
 - **Images:** add files under `public/images/` (needs a deploy), or upload them to a public Supabase Storage bucket and use the file URL as `src`.
 - **A bad edit cannot break the site:** every load is validated; an invalid row makes that refresh fail and the last good pages stay online (see the Vercel logs for `[content]`).
 - **Local development** shows the seed in `lib/content/data`, which is not updated by edits in Studio. To preview live content locally, put the production `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (read-only, RLS) in `.env.local`.
+
+## Reviewing the assistant
+
+`/admin` is an owner-only dashboard of what visitors asked the assistant and what it answered (last 30 days): filters for unanswered questions (fallback) and 👍 / 👎 ratings, whole conversations by session, and deleting entries. It sits behind HTTP Basic auth (`ADMIN_PASSWORD`, at least 12 characters, over HTTPS) checked in the proxy and again in the page and its action; without the password `/admin` returns 404. Questions the assistant could not answer are the cue to add a `knowledge_entries` row.
 
 ## Roadmap
 
